@@ -139,8 +139,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
+    <Text Include="Student.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="display.h" />
+    <ClInclude Include="login.h" />
+    <ClInclude Include="save.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>

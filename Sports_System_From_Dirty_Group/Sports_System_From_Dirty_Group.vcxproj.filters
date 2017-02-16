@@ -16,12 +16,24 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
+    <Text Include="Student.txt">
+      <Filter>资源文件</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="save.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="display.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="login.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
