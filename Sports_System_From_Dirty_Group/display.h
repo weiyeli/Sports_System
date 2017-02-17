@@ -31,5 +31,4 @@ void display()
 	SetPos(20, 6);
 	printf_s("ÃÜÂë: \n");
 	setColor(10, 0);
-	SetPos(25, 5);
 }
