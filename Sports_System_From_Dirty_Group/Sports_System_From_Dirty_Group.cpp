@@ -4,6 +4,8 @@
 #include "stdafx.h"
 #include <stdlib.h>
 #include "display.h"
+#include "login.h"
+#include "initialize_file.h"
 #define MAX 1000
 
 
@@ -24,6 +26,8 @@ struct Student students[100];
 
 int main()
 {
+	//initial_Admin();
 	display();
+	Login();
 }
 

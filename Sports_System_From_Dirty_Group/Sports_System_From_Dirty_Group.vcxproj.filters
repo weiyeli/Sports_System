@@ -19,6 +19,9 @@
     <Text Include="Student.txt">
       <Filter>资源文件</Filter>
     </Text>
+    <Text Include="password.txt">
+      <Filter>资源文件</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -34,6 +37,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="login.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="initialize_file.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

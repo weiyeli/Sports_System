@@ -4,8 +4,8 @@
 
 void setColor(unsigned short ForeColor = 7, unsigned short BackGroundColor = 0)
 {
-	HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);//获取当前窗口句柄
-	SetConsoleTextAttribute(handle, ForeColor + BackGroundColor * 0x10);//设置颜色
+	HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);  //获取当前窗口句柄
+	SetConsoleTextAttribute(handle, ForeColor + BackGroundColor * 0x10);  //设置颜色
 }
 
 
@@ -31,4 +31,5 @@ void display()
 	SetPos(20, 6);
 	printf_s("密码: \n");
 	setColor(10, 0);
+	SetPos(25, 5);
 }

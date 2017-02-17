@@ -138,11 +138,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <Text Include="password.txt" />
     <Text Include="ReadMe.txt" />
     <Text Include="Student.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="display.h" />
+    <ClInclude Include="initialize_file.h" />
     <ClInclude Include="login.h" />
     <ClInclude Include="save.h" />
     <ClInclude Include="stdafx.h" />
