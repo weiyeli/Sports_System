@@ -52,3 +52,37 @@ void AddStuMSG(char* arrStuID, char* arrStuName, int gender, float Mark_Running,
 		g_pEnd = pTemp;  //移动
 	}
 }
+
+void FreeLinkedData()
+{
+	STUNODE* pTemp = g_pHead;
+	while (g_pHead != NULL)
+	{
+		//记录节点
+		pTemp = g_pHead;
+
+		//向后移动一位
+		g_pHead = g_pHead->pnext;
+
+		//释放链表
+		free(pTemp);
+	}
+}
+
+//显示学生信息
+void ShowStuData()
+{
+	STUNODE* pTemp = g_pHead;
+	while (pTemp != NULL)
+	{
+		printf_s("学号        姓名       性别        跑步       跳远       铅球");
+		printf_s("%s     %s",pTemp->ID, pTemp->Name);
+		if (pTemp->gender == 1)
+			printf_s("男");
+		else printf_s("女");
+		printf_s("%f     %f      %f", pTemp->Mark_Running, pTemp->Mark_Jumping, pTemp->Mark_shot);
+		
+		//往下走一步
+		pTemp = pTemp->pnext;
+	}
+}

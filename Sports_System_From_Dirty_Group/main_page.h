@@ -56,8 +56,12 @@ void Show_Main_Page()
 		AddStuMSG(ID,Name,gender,Mark_Running, Mark_Jumping, Mark_shot);
 
 		break;
+
+	case 2:
+
 	default:
 		printf_s("÷∏¡Ó”–ŒÛ!\n");
 		break;
 	}
+	FreeLinkedData();
 }
