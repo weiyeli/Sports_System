@@ -45,6 +45,9 @@
     <ClInclude Include="main_page.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="logic.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

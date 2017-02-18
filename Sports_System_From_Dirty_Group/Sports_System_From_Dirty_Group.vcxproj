@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClInclude Include="display.h" />
     <ClInclude Include="initialize_file.h" />
+    <ClInclude Include="logic.h" />
     <ClInclude Include="login.h" />
     <ClInclude Include="main_page.h" />
     <ClInclude Include="save.h" />

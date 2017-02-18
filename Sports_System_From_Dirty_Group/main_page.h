@@ -1,7 +1,16 @@
 #pragma once
 #include <stdio.h>
 #include <stdlib.h>
+#include "logic.h"
 #include <Windows.Applicationmodel.Activation.h>
+
+char ID[20]; //学号
+char Name[10];  //学生姓名
+int gender; //性别
+float Mark_Running;
+float Mark_Jumping;
+float Mark_shot;
+
 
 void Show_Main_Page()
 {
@@ -22,6 +31,33 @@ void Show_Main_Page()
 	printf_s("10. 退出系统\n");
 	printf_s("*****************************************************************\n\n");
 
+	setColor(6, 0);
 	printf_s("输入指令咯\n");
 	scanf_s("%d",&iOrder);
+
+	switch (iOrder)
+	{
+	case 1: 
+		//添加学生信息
+		printf_s("输入学号: ");
+		getchar();
+		gets_s(ID);
+		printf_s("输入姓名: ");
+		gets_s(Name);
+		printf_s("输入性别(男1/女0): ");
+		scanf_s("%d",&gender);
+		printf_s("输入跑步成绩,未参加则输入零: ");
+		scanf_s("%f",&Mark_Running);
+		printf_s("输入跳远成绩,未参加则输入零: ");
+		scanf_s("%f", &Mark_Jumping);
+		printf_s("输入铅球成绩，未参加则输入零: ");
+		scanf_s("%f", &Mark_shot);
+
+		AddStuMSG(ID,Name,gender,Mark_Running, Mark_Jumping, Mark_shot);
+
+		break;
+	default:
+		printf_s("指令有误!\n");
+		break;
+	}
 }
