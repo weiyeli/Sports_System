@@ -72,15 +72,19 @@ void FreeLinkedData()
 //显示学生信息
 void ShowStuData()
 {
+	setColor(10, 0);
 	STUNODE* pTemp = g_pHead;
 	while (pTemp != NULL)
 	{
-		printf_s("学号        姓名       性别        跑步       跳远       铅球");
-		printf_s("%s     %s",pTemp->ID, pTemp->Name);
+		system("cls");
+		printf_s("  学号\t\t姓名\t\t性别\t\t跑步\t\t跳远 \t\t铅球\n");
+		printf_s("%10s\t%4s\t",pTemp->ID, pTemp->Name);
+		char* sOrder_Male = "男";
+		char* sOrder_Female = "女";
 		if (pTemp->gender == 1)
-			printf_s("男");
-		else printf_s("女");
-		printf_s("%f     %f      %f", pTemp->Mark_Running, pTemp->Mark_Jumping, pTemp->Mark_shot);
+			printf_s("%8s\t",sOrder_Male);
+		else printf_s("%8s\t",sOrder_Female);
+		printf_s("%8.2f\t%8.2f\t%8.2f", pTemp->Mark_Running, pTemp->Mark_Jumping, pTemp->Mark_shot);
 		
 		//往下走一步
 		pTemp = pTemp->pnext;

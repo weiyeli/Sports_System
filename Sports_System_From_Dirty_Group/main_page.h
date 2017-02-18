@@ -15,7 +15,7 @@ float Mark_shot;
 void Show_Main_Page()
 {
 	system("cls");
-
+	setColor(10, 0);
 	int iOrder = -1;
 	printf_s("*************************运动会管理系统*************************\n");
 	printf_s("***********************本系统操作指令如下***********************\n");
@@ -46,19 +46,26 @@ void Show_Main_Page()
 		gets_s(Name);
 		printf_s("输入性别(男1/女0): ");
 		scanf_s("%d",&gender);
-		printf_s("输入跑步成绩,未参加则输入零: ");
+		printf_s("输入100米成绩(单位: 秒),未参加则输入零: ");
 		scanf_s("%f",&Mark_Running);
-		printf_s("输入跳远成绩,未参加则输入零: ");
+		printf_s("输入跳远成绩(单位: 米),未参加则输入零: ");
 		scanf_s("%f", &Mark_Jumping);
-		printf_s("输入铅球成绩，未参加则输入零: ");
+		printf_s("输入铅球成绩(单位: 米)，未参加则输入零: ");
 		scanf_s("%f", &Mark_shot);
 
 		AddStuMSG(ID,Name,gender,Mark_Running, Mark_Jumping, Mark_shot);
-
-		break;
+		printf_s("是否返回主页面: y/n\n");
+		char bOrder;
+		getchar();
+		scanf_s("%c", &bOrder);
+			if (bOrder == 'y')
+				Show_Main_Page();
+			else 
+				break;
 
 	case 2:
-
+		ShowStuData();
+		break;
 	default:
 		printf_s("指令有误!\n");
 		break;
