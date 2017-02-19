@@ -373,7 +373,7 @@ void SaveStuToFile()
 	}
 
 	//打开文件
-	pFile = fopen("dat.txt","wb+");
+	pFile = fopen("dat.txt","ab+");
 	if (NULL == pFile)
 	{
 		printf_s("文件打开失败\n");
@@ -407,5 +407,5 @@ void SaveStuToFile()
 
 	//关闭文件
 	fclose(pFile);
-
+	return;
 }
