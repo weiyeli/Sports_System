@@ -11,7 +11,7 @@ typedef struct Student
 	int gender; //性别
 	float Mark_Running;
 	float Mark_Jumping;
-	float Mark_shot;
+	float Mark_Shot;
 	Student* pnext;  //指针
 } STUNODE;
 
@@ -21,10 +21,10 @@ STUNODE* g_pEnd = NULL;
 
 
 //添加学生信息
-void AddStuMSG(char* arrStuID, char* arrStuName, int gender, float Mark_Running, float Mark_Jumping, float Mark_shot)
+void AddStuMSG(char* arrStuID, char* arrStuName, int gender, float Mark_Running, float Mark_Jumping, float Mark_Shot)
 {
 	//检验参数的合法性
-	if (NULL == arrStuName|| NULL == arrStuID || Mark_Jumping<0 || Mark_Running<0 || Mark_shot<0)
+	if (NULL == arrStuName|| NULL == arrStuID || Mark_Jumping<0 || Mark_Running<0 || Mark_Shot<0)
 	{
 		printf_s("学生信息有误");
 		return;
@@ -38,7 +38,7 @@ void AddStuMSG(char* arrStuID, char* arrStuName, int gender, float Mark_Running,
 	strcpy(pTemp->Name, arrStuName);
 	pTemp->Mark_Jumping = Mark_Jumping;
 	pTemp->Mark_Running = Mark_Running;
-	pTemp->Mark_shot = Mark_shot;
+	pTemp->Mark_Shot = Mark_Shot;
 	pTemp->pnext = NULL;
 
 	//接在链表尾部上
@@ -103,7 +103,7 @@ void ShowStuData()
 		if (pTemp->gender == 1)
 			printf_s("%8s\t",sOrder_Male);
 		else printf_s("%8s\t",sOrder_Female);
-		printf_s("%8.2f\t%8.2f\t%8.2f\n", pTemp->Mark_Running, pTemp->Mark_Jumping, pTemp->Mark_shot);
+		printf_s("%8.2f\t%8.2f\t%8.2f\n", pTemp->Mark_Running, pTemp->Mark_Jumping, pTemp->Mark_Shot);
 		
 		//往下走一步
 		pTemp = pTemp->pnext;
@@ -127,7 +127,7 @@ void showSingleSTU(STUNODE* pTemp)
 	if (pTemp->gender == 1)
 		printf_s("%8s\t", sOrder_Male);
 	else printf_s("%8s\t", sOrder_Female);
-	printf_s("%8.2f\t%8.2f\t%8.2f\n", pTemp->Mark_Running, pTemp->Mark_Jumping, pTemp->Mark_shot);
+	printf_s("%8.2f\t%8.2f\t%8.2f\n", pTemp->Mark_Running, pTemp->Mark_Jumping, pTemp->Mark_Shot);
 }
 
 
@@ -161,4 +161,130 @@ STUNODE* FindSTUByIDOrNmae(char* DATA)
 
 	printf_s("查无此节点");
 	return NULL;
+}
+
+
+
+void ModifyStuData(STUNODE* pTemp)
+{
+	setColor(10, 0);
+	char cOrder = 'q';
+	int flag = 1;
+
+	if(NULL == pTemp)
+	{
+		printf_s("查无此人!\n");
+		return;
+	}
+
+	showSingleSTU(pTemp);
+	printf_s("\n");
+
+
+	//修改学生信息
+	char ID[20]; //学号
+	char Name[10];  //学生姓名
+	int gender; //性别
+	float Mark_Running;
+	float Mark_Jumping;
+	float Mark_Shot;
+
+
+	//修改学号
+	printf_s("请输入新的学号(无需修改则输入0): ");
+	getchar();
+	gets_s(ID);
+	if (strcmp(ID, "0") != 0) {
+		while (flag) {
+			printf_s("是否要将学号%s修改为%s？ y/n\n", pTemp->ID, ID);
+			scanf_s("%c", &cOrder);
+			if (cOrder == 'y') {
+				strcpy(pTemp->ID, ID);
+				flag = 0;
+			} 
+		}
+		flag = 1;
+	}
+
+	//修改姓名
+	printf_s("请输入新的姓名(无需修改则输入0): ");
+	getchar();
+	gets_s(Name);
+	if (strcmp(Name, "0") != 0) {
+		while (flag) {
+			printf_s("是否要将姓名%s修改为%s？ y/n\n", pTemp->Name, Name);
+			scanf_s("%c", &cOrder);
+			if (cOrder == 'y') {
+				strcpy(pTemp->Name, Name);
+				flag = 0;
+			}
+		}
+		flag = 1;
+	}
+
+	//修改性别
+	printf_s("请输入新的性别(无需修改则输入0): ");
+	getchar();
+	scanf_s("%d", &gender);
+	if ( gender!=0 ) {
+		while (flag) {
+			printf_s("是否要将姓别%d修改为%d？ y/n\n", pTemp->gender, gender);
+			scanf_s("%c", &cOrder);
+			if (cOrder == 'y') {
+				pTemp->gender = gender;
+				flag = 0;
+			}
+		}
+		flag = 1;
+	}
+
+	//修改100米跑成绩
+	printf_s("请输入新的100米跑成绩(无需修改则输入-1): ");
+	getchar();
+	scanf_s("%f", &Mark_Running);
+	if ( Mark_Running!= -1) {
+		while (flag) {
+			printf_s("是否要将100米跑成绩%.2f秒修改为%.2f秒？ y/n\n", pTemp->Mark_Running, Mark_Running);
+			scanf_s("%c", &cOrder);
+			if (cOrder == 'y') {
+				pTemp->Mark_Running = Mark_Running;
+				flag = 0;
+			}
+		}
+		flag = 1;
+	}
+
+
+	//修改跳远成绩
+	printf_s("请输入新的跳远成绩(无需修改则输入-1): ");
+	getchar();
+	scanf_s("%f", &Mark_Jumping);
+	if (Mark_Jumping != -1) {
+		while (flag) {
+			printf_s("是否要将跳远成绩%.2f米修改为%.2f米？ y/n\n", pTemp->Mark_Jumping, Mark_Jumping);
+			scanf_s("%c", &cOrder);
+			if (cOrder == 'y') {
+				pTemp->Mark_Jumping = Mark_Jumping;
+				flag = 0;
+			}
+		}
+		flag = 1;
+	}
+
+	//修改铅球成绩
+	printf_s("请输入新的铅球成绩(无需修改则输入-1): ");
+	getchar();
+	scanf_s("%f", &Mark_Shot);
+	if (Mark_Shot != -1) {
+		while (flag) {
+			printf_s("是否要将铅球成绩%.2f米修改为%.2f米？ y/n\n", pTemp->Mark_Shot, Mark_Shot);
+			scanf_s("%c", &cOrder);
+			if (cOrder == 'y') {
+				pTemp->Mark_Shot = Mark_Shot;
+				flag = 0;
+			}
+		}
+		flag = 1;
+	}
+
 }

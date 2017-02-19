@@ -89,7 +89,12 @@ void Show_Main_Page()
 
 
 		case 3: {
-
+			printf_s("请输入要修改信息的学生学号或姓名: ");
+			getchar();
+			gets_s(sOrder);
+			ModifyStuData(FindSTUByIDOrNmae(sOrder));
+			ReturnToMainMenu();
+			break;
 		}
 
 
