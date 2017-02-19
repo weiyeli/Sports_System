@@ -57,46 +57,90 @@ void Show_Main_Page()
 		switch (iOrder)
 		{
 		case 1: {
-			//添加学生信息
-			printf_s("输入学号: ");
-			getchar();
-			gets_s(ID);
-			printf_s("输入姓名: ");
-			gets_s(Name);
-			printf_s("输入性别(男1/女0): ");
-			scanf_s("%d", &gender);
-			printf_s("输入100米成绩(单位: 秒),未参加则输入零: ");
-			scanf_s("%f", &Mark_Running);
-			printf_s("输入跳远成绩(单位: 米),未参加则输入零: ");
-			scanf_s("%f", &Mark_Jumping);
-			printf_s("输入铅球成绩(单位: 米)，未参加则输入零: ");
-			scanf_s("%f", &Mark_shot);
-			getchar();
-			AddStuMSG(ID, Name, gender, Mark_Running, Mark_Jumping, Mark_shot);
-			ReturnToMainMenu();
-			break;
+			while (flag)
+			{
+				//添加学生信息
+				printf_s("输入学号: ");
+				getchar();
+				gets_s(ID);
+				printf_s("输入姓名: ");
+				gets_s(Name);
+				printf_s("输入性别(男1/女0): ");
+				scanf_s("%d", &gender);
+				printf_s("输入100米成绩(单位: 秒),未参加则输入零: ");
+				scanf_s("%f", &Mark_Running);
+				printf_s("输入跳远成绩(单位: 米),未参加则输入零: ");
+				scanf_s("%f", &Mark_Jumping);
+				printf_s("输入铅球成绩(单位: 米)，未参加则输入零: ");
+				scanf_s("%f", &Mark_shot);
+				getchar();
+				AddStuMSG(ID, Name, gender, Mark_Running, Mark_Jumping, Mark_shot);
+				printf_s("是否继续输入: y/n\n");
+				scanf_s("%c",&bOrder);
+				if (bOrder != 'y'){
+					ReturnToMainMenu();
+					flag = 0;
+				}
+				flag = 1;
+				break;
+			}
 		}
 
 		case 2:
 		{
-			printf_s("请输入学生的学号或者姓名: \n");
-			getchar();
-			gets_s(sOrder);
-			showSingleSTU(FindSTUByIDOrNmae(sOrder));
-			ReturnToMainMenu();
+			while (flag)
+			{
+				printf_s("请输入学生的学号或者姓名: \n");
+				getchar();
+				gets_s(sOrder);
+				showSingleSTU(FindSTUByIDOrNmae(sOrder));
+				printf_s("是否继续查询: y/n\n");
+				scanf_s("%c", &bOrder);
+				if (bOrder != 'y') {
+					ReturnToMainMenu();
+					flag = 0;
+				}	
+			}
+			flag = 1;
 			break;
 		}
 
 
 		case 3: {
-			printf_s("请输入要修改信息的学生学号或姓名: ");
-			getchar();
-			gets_s(sOrder);
-			ModifyStuData(FindSTUByIDOrNmae(sOrder));
-			ReturnToMainMenu();
+			while (flag)
+			{
+				printf_s("请输入要修改信息的学生学号或姓名: ");
+				getchar();
+				gets_s(sOrder);
+				ModifyStuData(FindSTUByIDOrNmae(sOrder));
+				printf_s("是否继续修改: y/n\n");
+				scanf_s("%c", &bOrder);
+				if (bOrder != 'y') {
+					ReturnToMainMenu();
+					flag = 0;
+				}
+			}
+			flag = 1;
 			break;
 		}
 
+		case 6: {
+			while (flag)
+			{
+				printf_s("请输入要删除的学生学号或姓名: ");
+				getchar();
+				gets_s(sOrder);
+				DeleteStuData(FindSTUByIDOrNmae(sOrder));
+				printf_s("是否继续删除: y/n\n");
+				scanf_s("%c", &bOrder);
+				if (bOrder != 'y') {
+					ReturnToMainMenu();
+					flag = 0;
+				}
+			}
+			flag = 1;
+			break;
+		}
 
 		case 9: {
 			ShowStuData();

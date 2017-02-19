@@ -138,7 +138,7 @@ STUNODE* FindSTUByIDOrNmae(char* DATA)
 	//检测参数的合法性
 	if (NULL == DATA)
 	{
-		printf_s("学号输入错误!\n");
+		//printf_s("输入错误!\n");
 		return NULL;
 	}
 
@@ -286,5 +286,72 @@ void ModifyStuData(STUNODE* pTemp)
 		}
 		flag = 1;
 	}
+}
 
+void DeleteStuData(STUNODE* pNode)
+{
+	if (NULL == pNode)
+	{
+		printf_s("查无此人!\n");
+		return;
+	}
+
+	//只有一个节点
+	if (g_pHead == g_pEnd)
+	{
+		free(g_pHead);
+		g_pHead = NULL;
+		g_pEnd = NULL;
+	}
+	// 只有两个节点
+	else if (g_pHead->pnext == g_pEnd) {
+		//如果传进来的是头
+		if (g_pHead == pNode) {
+			free(g_pHead);
+			g_pHead = g_pEnd;
+		}
+		//如果传进来的是尾
+		if (g_pEnd == pNode) {
+			free(g_pEnd);
+			g_pEnd = g_pHead;
+			g_pHead->pnext = NULL; //小心野指针
+		}
+		//节点数大于等于三
+		else {
+			STUNODE* pTemp = g_pHead;
+
+			//判断头
+			if (g_pHead == pNode)
+			{
+				//记住头
+				pTemp = g_pHead;
+				g_pHead = g_pHead->pnext;
+				free(pTemp);
+				pTemp = NULL;
+				return;
+			}
+
+			while (pTemp)
+			{
+				if (pTemp->pnext == pNode) 
+				{
+
+					//判断尾
+					if (g_pEnd = pNode)
+					{
+						//删除
+						free(pNode);
+						pNode = NULL;
+						g_pEnd = pTemp;
+						pTemp->pnext = NULL;
+						return;
+					}
+
+					pTemp->pnext = pNode->pnext;
+					free(pNode);
+				}
+					pTemp = pTemp->pnext;
+			}
+		}
+	}
 }
