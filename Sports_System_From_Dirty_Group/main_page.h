@@ -37,10 +37,11 @@ void Show_Menu()
 
 void ReturnToMainMenu() {
 	printf_s("是否返回主页面: y/n\n");
-	getchar();
+	//getchar();
 	scanf_s("%c", &bOrder);
 	if (bOrder == 'y')
 		Show_Menu();
+	else flag = 0;
 }
 
 
@@ -55,7 +56,7 @@ void Show_Main_Page()
 
 		switch (iOrder)
 		{
-		case 1:
+		case 1: {
 			//添加学生信息
 			printf_s("输入学号: ");
 			getchar();
@@ -70,38 +71,42 @@ void Show_Main_Page()
 			scanf_s("%f", &Mark_Jumping);
 			printf_s("输入铅球成绩(单位: 米)，未参加则输入零: ");
 			scanf_s("%f", &Mark_shot);
-
-			AddStuMSG(ID, Name, gender, Mark_Running, Mark_Jumping, Mark_shot);
-			printf_s("是否返回主页面: y/n\n");
 			getchar();
-			scanf_s("%c", &bOrder);
+			AddStuMSG(ID, Name, gender, Mark_Running, Mark_Jumping, Mark_shot);
 			ReturnToMainMenu();
 			break;
+		}
 
 		case 2:
+		{
 			printf_s("请输入学生的学号或者姓名: \n");
 			getchar();
 			gets_s(sOrder);
 			showSingleSTU(FindSTUByIDOrNmae(sOrder));
-			printf_s("是否返回主页面: y/n\n");
-			getchar();
-			scanf_s("%c", &bOrder);
-			ReturnToMainMenu();
-			break;
-
-		case 9:
-			ShowStuData();
-			ReturnToMainMenu();
-			break;
-
-		default:
-			printf_s("指令有误!\n");
-			printf_s("是否返回主页面: y/n\n");
-			getchar();
-			scanf_s("%c", &bOrder);
 			ReturnToMainMenu();
 			break;
 		}
-		FreeLinkedData();
+
+
+		case 3: {
+
+		}
+
+
+		case 9: {
+			ShowStuData();
+			getchar();
+			ReturnToMainMenu();
+			break;
+		}
+
+		default: {
+			printf_s("指令有误!\n");
+			ReturnToMainMenu();
+			break;
+		}
+			
+		}
 	}
+	FreeLinkedData();
 }

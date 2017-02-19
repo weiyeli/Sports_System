@@ -86,6 +86,13 @@ void ShowStuData()
 {
 	setColor(10, 0);
 	STUNODE* pTemp = g_pHead;
+	if (NULL == g_pHead || NULL == g_pEnd)
+	{
+		printf_s("学生信息为空!\n");
+		return;
+	}
+
+
 	while (pTemp != NULL)
 	{
 		system("cls");
