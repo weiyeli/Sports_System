@@ -355,3 +355,57 @@ void DeleteStuData(STUNODE* pNode)
 		}
 	}
 }
+
+
+//保存信息到文件中
+void SaveStuToFile()
+{
+	FILE* pFile = NULL;
+	STUNODE* pTemp = g_pHead;
+	char strBuf[40] = {'\0'};
+	char strScore[20] = { '\0' };
+
+	//判断链表是否为空
+	if (NULL == g_pHead)
+	{
+		printf_s("学生信息为空!");
+		return;
+	}
+
+	//打开文件
+	pFile = fopen("dat.txt","wb+");
+	if (NULL == pFile)
+	{
+		printf_s("文件打开失败\n");
+		return;
+	}
+	//操作文件指针
+	while (pTemp)
+	{
+		//学号复制进去
+		strcpy(strBuf,pTemp->ID);
+		//姓名
+		strcat(strBuf,pTemp->Name);
+		//性别
+		itoa(pTemp->gender,strScore,10);
+		strcat(strBuf,strScore);
+		//100米跑成绩
+		itoa(pTemp->Mark_Running, strScore, 10);
+		strcat(strBuf, strScore);
+		//跳远成绩
+		itoa(pTemp->Mark_Jumping, strScore, 10);
+		strcat(strBuf, strScore);
+		//铅球成绩
+		itoa(pTemp->Mark_Shot, strScore, 10);
+		strcat(strBuf, strScore);
+
+		//写入文件
+		fwrite(strBuf, 1 , strlen(strBuf) , pFile );
+
+		pTemp = pTemp->pnext;	
+	}
+
+	//关闭文件
+	fclose(pFile);
+
+}

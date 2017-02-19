@@ -81,9 +81,9 @@ void Show_Main_Page()
 					ReturnToMainMenu();
 					flag = 0;
 				}
-				flag = 1;
-				break;
 			}
+			flag = 1;
+			break;
 		}
 
 		case 2:
@@ -123,6 +123,14 @@ void Show_Main_Page()
 			flag = 1;
 			break;
 		}
+
+		//保存学生信息
+		case 4: {
+			SaveStuToFile();
+			printf_s("保存成功\n");
+			ReturnToMainMenu();
+		}
+
 
 		case 6: {
 			while (flag)
