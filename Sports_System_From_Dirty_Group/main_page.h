@@ -128,7 +128,9 @@ void Show_Main_Page()
 		case 4: {
 			SaveStuToFile();
 			printf_s("±£´æ³É¹¦\n");
+			getchar();
 			ReturnToMainMenu();
+			break;
 		}
 
 

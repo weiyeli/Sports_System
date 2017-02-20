@@ -362,7 +362,7 @@ void SaveStuToFile()
 {
 	FILE* pFile = NULL;
 	STUNODE* pTemp = g_pHead;
-	char strBuf[40] = {'\0'};
+	char strBuf[60] = {'\0'};
 	char strScore[20] = { '\0' };
 
 	//判断链表是否为空
@@ -384,23 +384,29 @@ void SaveStuToFile()
 	{
 		//学号复制进去
 		strcpy(strBuf,pTemp->ID);
+		strcat(strBuf,".");
 		//姓名
 		strcat(strBuf,pTemp->Name);
+		strcat(strBuf, ".");
 		//性别
 		itoa(pTemp->gender,strScore,10);
 		strcat(strBuf,strScore);
+		strcat(strBuf, ".");
 		//100米跑成绩
 		itoa(pTemp->Mark_Running, strScore, 10);
 		strcat(strBuf, strScore);
+		strcat(strBuf, ".");
 		//跳远成绩
 		itoa(pTemp->Mark_Jumping, strScore, 10);
 		strcat(strBuf, strScore);
+		strcat(strBuf, ".");
 		//铅球成绩
 		itoa(pTemp->Mark_Shot, strScore, 10);
 		strcat(strBuf, strScore);
 
 		//写入文件
 		fwrite(strBuf, 1 , strlen(strBuf) , pFile );
+		fwrite("\r\n",1,strlen("\r\n"),pFile);
 
 		pTemp = pTemp->pnext;	
 	}
