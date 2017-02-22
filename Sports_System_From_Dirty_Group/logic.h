@@ -415,3 +415,53 @@ void SaveStuToFile()
 	fclose(pFile);
 	return;
 }
+
+
+//读取文件中的学生信息
+void ReadSTUFromFile()
+{
+	FILE *pFile = fopen("dat.txt","rb+");
+	if (NULL == pFile)
+	{
+		printf_s("文件打开失败\n");
+		return;
+	}
+
+	char strBuf[60] = { '\0' };
+	char ID[20]; //学号
+	char Name[10];  //学生姓名
+	int gender; //性别
+	float Mark_Running;
+	float Mark_Jumping;
+	float Mark_Shot;
+
+	int nCount = 0;
+
+	//操作指针，读取函数
+	while (fgets(strBuf, 60, pFile))
+	{
+		int i = 0;
+		for (i=0; strBuf[i] != '\r'; i++)
+		{
+			if (0 == nCount) //没到"."
+			{
+				ID[i] = strBuf[i];
+				if ('.' == strBuf[i])
+				{
+					nCount++;
+				}
+			}
+			else if (1 == nCount) //第一个'.'
+			{
+				ID[i] = strBuf[i];
+				if ('.' == strBuf[i])
+				{
+					nCount++;
+				}
+			}
+		}
+	}
+
+
+	fclose(pFile);
+}
