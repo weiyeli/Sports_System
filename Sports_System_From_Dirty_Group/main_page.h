@@ -29,7 +29,7 @@ void Show_Menu()
 	printf_s("6. 删除指定学生的信息\n");
 	printf_s("7. 恢复删除的学生信息\n");
 	printf_s("8. 显示项目比赛情况\n");
-	printf_s("9. 显示所有学生成绩\n");
+	printf_s("9. 显示所有学生信息\n");
 	printf_s("10. 退出系统\n");
 	printf_s("*****************************************************************\n\n");
 	printf_s("输入指令咯\n");
@@ -131,7 +131,14 @@ void Show_Main_Page()
 			ReturnToMainMenu();
 			break;
 		}
-
+		
+		//读取文件信息
+		case 5: {
+			printf_s("读取成功\n");
+			getchar();
+			ReturnToMainMenu();
+			break;
+		}
 
 		case 6: {
 			while (flag)
@@ -146,6 +153,7 @@ void Show_Main_Page()
 				if (a == 'y') {
 					DeleteStuData(FindSTUByIDOrNmae(sOrder));
 					printf_s("删除成功!\n");
+
 				}
 				getchar();
 				printf_s("是否继续删除: y/n\n");
@@ -158,7 +166,7 @@ void Show_Main_Page()
 			flag = 1;
 			break;
 		}
-
+		
 		case 9: {
 			ShowStuData();
 			getchar();

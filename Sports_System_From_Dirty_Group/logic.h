@@ -30,28 +30,74 @@ void AddStuMSG(char* arrStuID, char* arrStuName, int gender, float Mark_Running,
 		return;
 	}
 
+
 	//逻辑
 	//创建一个节点
-	STUNODE* pTemp = (STUNODE*)malloc(sizeof(STUNODE));
+	STUNODE* pNode = (STUNODE*)malloc(sizeof(STUNODE));
 	//节点成员初始化
-	strcpy(pTemp->ID, arrStuID);
-	strcpy(pTemp->Name, arrStuName);
-	pTemp->gender = gender;
-	pTemp->Mark_Jumping = Mark_Jumping;
-	pTemp->Mark_Running = Mark_Running;
-	pTemp->Mark_Shot = Mark_Shot;
-	pTemp->pnext = NULL;
+	strcpy(pNode->ID, arrStuID);
+	strcpy(pNode->Name, arrStuName);
+	pNode->gender = gender;
+	pNode->Mark_Jumping = Mark_Jumping;
+	pNode->Mark_Running = Mark_Running;
+	pNode->Mark_Shot = Mark_Shot;
+	pNode->pnext = NULL;
 
 	//接在链表尾部上
+	//如果链表为空
 	if (NULL == g_pHead || NULL == g_pEnd)
 	{
-		g_pHead = pTemp;
-		g_pEnd = pTemp;
+		g_pHead = pNode;
+		g_pEnd = pNode;
+		return;
 	}
+
+	STUNODE* pTemp = g_pHead; //用来遍历每一个节点
+	STUNODE* tTemp = NULL;	//标记前置节点
+
+
+	//如果链表不为空,按学号从小到大插入节点
+ 	while (atoi(pTemp->ID) <= atoi(pNode->ID))
+	{
+		//如果两个学号相等，直接退出
+		if (atoi(pTemp->ID) == atoi(pNode->ID))
+		{
+			printf_s("error: 已存在该学号的学生!\n");
+			return;
+		}
+
+		tTemp = pTemp;
+		pTemp = pTemp->pnext;
+
+		if (pTemp == NULL)
+			break;
+	}
+
+	//刚好插在头部
+	if (pTemp == g_pHead)
+	{
+		pNode->pnext = pTemp;
+		g_pHead = pNode;
+		pTemp = NULL;
+		return;
+	}
+	//插在尾部
+	else if (pTemp == NULL){
+		tTemp->pnext = pNode;
+		g_pEnd = pNode;
+		pNode->pnext = NULL;
+		return;
+	}
+
+	//插在中间
 	else {
-		g_pEnd->pnext = pTemp;	//链接
-		g_pEnd = pTemp;  //移动
+		tTemp->pnext = pNode;
+		pNode->pnext = pTemp;
 	}
+	//else {
+	//	g_pEnd->pnext = pNode;	//链接
+	//	g_pEnd = pNode;  //移动
+	//}
 
 	/*接在链表头部上
 	if (g_pHead == NULL || g_pEnd == NULL)
@@ -124,13 +170,13 @@ void showSingleSTU(STUNODE* pTemp)
 	setColor(10, 0);
 	system("cls");
 	printf_s("  学号\t\t姓名\t\t性别\t\t跑步\t\t跳远 \t\t铅球\n");
-	printf_s("%10s\t%4s\t", pTemp->ID, pTemp->Name);
+	printf_s("%10s\t%4s\t\t", pTemp->ID, pTemp->Name);
 	char* sOrder_Male = "男";
 	char* sOrder_Female = "女";
 	if (pTemp->gender == 1)
-		printf_s("%8s\t", sOrder_Male);
-	else printf_s("%8s\t", sOrder_Female);
-	printf_s("%8.2f\t%8.2f\t%8.2f\n", pTemp->Mark_Running, pTemp->Mark_Jumping, pTemp->Mark_Shot);
+		printf_s("%8s\t\t", sOrder_Male);
+	else printf_s("%8s\t\t", sOrder_Female);
+	printf_s("%8.2f\t\t%8.2f\t\t%8.2f\n", pTemp->Mark_Running, pTemp->Mark_Jumping, pTemp->Mark_Shot);
 }
 
 
@@ -162,7 +208,7 @@ STUNODE* FindSTUByIDOrNmae(char* DATA)
 		pTemp = pTemp->pnext;
 	}
 
-	printf_s("查无此节点");
+	//printf_s("查无此节点");
 	return NULL;
 }
 
@@ -344,13 +390,14 @@ void DeleteStuData(STUNODE* pNode)
 				return;
 			}
 
+			//printf_s("%s我是测试3\n", pNode->ID);
 			while (pTemp)
 			{
 				if (pTemp->pnext == pNode) 
 				{
 
 					//判断尾
-					if (g_pEnd = pNode)
+					if (g_pEnd == pNode)
 					{
 						//删除
 						free(pNode);
@@ -362,6 +409,7 @@ void DeleteStuData(STUNODE* pNode)
 
 					pTemp->pnext = pNode->pnext;
 					free(pNode);
+					return;
 				}
 					pTemp = pTemp->pnext;
 			}
@@ -385,7 +433,7 @@ void SaveStuToFile()
 	}
 
 	//打开文件
-	pFile = fopen("dat.txt","ab+");
+	pFile = fopen("dat.txt","wb+");
 	if (NULL == pFile)
 	{
 		printf_s("文件打开失败\n");
@@ -504,8 +552,13 @@ void ReadSTUFromFile()
 		//将文件中的信息添加到链表中
 		AddStuMSG(ID, Name, gender, Mark_Running, Mark_Jumping, Mark_Shot);
 	}
-
-
-
 	fclose(pFile);
+}
+
+//显示100米跑信息
+void ShowRunningMes()
+{
+	setColor(10, 0);
+	printf_s("   学号\t\t姓名\t\t成绩\t\t名次\n");
+
 }
