@@ -6,11 +6,12 @@
 #include "display.h"
 #include "login.h"
 #include "initialize_file.h"
+#include "logic.h"
 #define MAX 1000
 
 int main()
 {
-	//initial_Admin();
+	ReadSTUFromFile();
 	display();
 	Login();
 }

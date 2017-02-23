@@ -36,6 +36,7 @@ void AddStuMSG(char* arrStuID, char* arrStuName, int gender, float Mark_Running,
 	//节点成员初始化
 	strcpy(pTemp->ID, arrStuID);
 	strcpy(pTemp->Name, arrStuName);
+	pTemp->gender = gender;
 	pTemp->Mark_Jumping = Mark_Jumping;
 	pTemp->Mark_Running = Mark_Running;
 	pTemp->Mark_Shot = Mark_Shot;
@@ -86,24 +87,25 @@ void ShowStuData()
 {
 	setColor(10, 0);
 	STUNODE* pTemp = g_pHead;
+
 	if (NULL == g_pHead || NULL == g_pEnd)
 	{
 		printf_s("学生信息为空!\n");
 		return;
 	}
 
+	system("cls");
+	printf_s("  学号\t\t姓名\t\t性别\t\t跑步\t\t跳远 \t\t铅球\n");
 
 	while (pTemp != NULL)
 	{
-		system("cls");
-		printf_s("  学号\t\t姓名\t\t性别\t\t跑步\t\t跳远 \t\t铅球\n");
 		printf_s("%10s\t%4s\t",pTemp->ID, pTemp->Name);
 		char* sOrder_Male = "男";
 		char* sOrder_Female = "女";
 		if (pTemp->gender == 1)
-			printf_s("%8s\t",sOrder_Male);
-		else printf_s("%8s\t",sOrder_Female);
-		printf_s("%8.2f\t%8.2f\t%8.2f\n", pTemp->Mark_Running, pTemp->Mark_Jumping, pTemp->Mark_Shot);
+			printf_s("%4s\t", sOrder_Male);
+		else printf_s("%4s\t", sOrder_Female);
+		printf_s("%12.2f\t%12.2f\t%12.2f\n", pTemp->Mark_Running, pTemp->Mark_Jumping, pTemp->Mark_Shot);
 		
 		//往下走一步
 		pTemp = pTemp->pnext;
@@ -288,6 +290,7 @@ void ModifyStuData(STUNODE* pTemp)
 	}
 }
 
+//删除学生信息
 void DeleteStuData(STUNODE* pNode)
 {
 	if (NULL == pNode)
@@ -379,30 +382,39 @@ void SaveStuToFile()
 		printf_s("文件打开失败\n");
 		return;
 	}
+
+
 	//操作文件指针
 	while (pTemp)
 	{
 		//学号复制进去
 		strcpy(strBuf,pTemp->ID);
-		strcat(strBuf,".");
+		strcat(strBuf,"#");
 		//姓名
 		strcat(strBuf,pTemp->Name);
-		strcat(strBuf, ".");
+		strcat(strBuf, "#");
 		//性别
-		itoa(pTemp->gender,strScore,10);
-		strcat(strBuf,strScore);
-		strcat(strBuf, ".");
+		//itoa(pTemp->gender,strScore,10);
+		if (pTemp->gender==0)
+			strcat(strBuf, "0");
+		else strcat(strBuf, "1");
+		//strcat(strBuf,strScore);
+		strcat(strBuf, "#");
 		//100米跑成绩
-		itoa(pTemp->Mark_Running, strScore, 10);
+		sprintf(strScore, "%.3f", pTemp->Mark_Running);
+		//itoa(pTemp->Mark_Running, strScore, 10);
 		strcat(strBuf, strScore);
-		strcat(strBuf, ".");
+		strcat(strBuf, "#");
 		//跳远成绩
-		itoa(pTemp->Mark_Jumping, strScore, 10);
+		sprintf(strScore, "%.3f", pTemp->Mark_Jumping);
+		//itoa(pTemp->Mark_Jumping, strScore, 10);
 		strcat(strBuf, strScore);
-		strcat(strBuf, ".");
+		strcat(strBuf, "#");
 		//铅球成绩
-		itoa(pTemp->Mark_Shot, strScore, 10);
+		sprintf(strScore, "%.3f", pTemp->Mark_Shot);
+		//itoa(pTemp->Mark_Shot, strScore, 10);
 		strcat(strBuf, strScore);
+		strcat(strBuf, "#");
 
 		//写入文件
 		fwrite(strBuf, 1 , strlen(strBuf) , pFile );
@@ -413,7 +425,6 @@ void SaveStuToFile()
 
 	//关闭文件
 	fclose(pFile);
-	return;
 }
 
 
@@ -435,32 +446,56 @@ void ReadSTUFromFile()
 	float Mark_Jumping;
 	float Mark_Shot;
 
-	int nCount = 0;
-
 	//操作指针，读取函数
 	while (fgets(strBuf, 60, pFile))
 	{
-		int i = 0;
-		for (i=0; strBuf[i] != '\r'; i++)
+		int nCount = 0;
+		char delims[] = "#";
+		char *result = NULL;
+
+		//字符串切割
+		result = strtok(strBuf, delims);
+		strcpy(ID, result);
+		//puts(ID);
+
+		while (NULL != result)
 		{
-			if (0 == nCount) //没到"."
-			{
-				ID[i] = strBuf[i];
-				if ('.' == strBuf[i])
-				{
-					nCount++;
-				}
+			//读到换行就结束
+			if (strcmp(result,"\r\n")==0)
+				break;
+
+			result = strtok(NULL, delims);
+			if (0 == nCount)
+				strcpy(Name, result);
+			//puts(Name);
+
+			if (1 == nCount) {
+				gender = atoi(result);
+				//printf_s("%d\n", gender);
 			}
-			else if (1 == nCount) //第一个'.'
+			if (2 == nCount)
 			{
-				ID[i] = strBuf[i];
-				if ('.' == strBuf[i])
-				{
-					nCount++;
-				}
+				Mark_Running = atof(result);
+				//printf_s("%f\n", Mark_Running);
 			}
+			if (3 == nCount)
+			{
+				Mark_Jumping = atof(result);
+				//printf_s("%f\n", Mark_Jumping);
+			}
+			if (4 == nCount)
+			{
+				Mark_Shot = atof(result);
+				//printf_s("%f\n", Mark_Shot);
+			}
+			nCount++;
+
 		}
+
+		//将文件中的信息添加到链表中
+		AddStuMSG(ID, Name, gender, Mark_Running, Mark_Jumping, Mark_Shot);
 	}
+
 
 
 	fclose(pFile);

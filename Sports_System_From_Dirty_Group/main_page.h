@@ -126,7 +126,6 @@ void Show_Main_Page()
 
 		//保存学生信息
 		case 4: {
-			SaveStuToFile();
 			printf_s("保存成功\n");
 			getchar();
 			ReturnToMainMenu();
@@ -140,7 +139,15 @@ void Show_Main_Page()
 				printf_s("请输入要删除的学生学号或姓名: ");
 				getchar();
 				gets_s(sOrder);
-				DeleteStuData(FindSTUByIDOrNmae(sOrder));
+				char a = 'q';
+				showSingleSTU(FindSTUByIDOrNmae(sOrder));
+				printf_s("\n确定要删除这条学生信息吗? y/n\n");
+				scanf_s("%c", &a);
+				if (a == 'y') {
+					DeleteStuData(FindSTUByIDOrNmae(sOrder));
+					printf_s("删除成功!\n");
+				}
+				getchar();
 				printf_s("是否继续删除: y/n\n");
 				scanf_s("%c", &bOrder);
 				if (bOrder != 'y') {
@@ -159,13 +166,21 @@ void Show_Main_Page()
 			break;
 		}
 
+		case 10: {
+			flag = 0;
+			break;
+		}
+
 		default: {
 			printf_s("指令有误!\n");
+			getchar();
 			ReturnToMainMenu();
 			break;
 		}
 			
 		}
 	}
+
+	SaveStuToFile();
 	FreeLinkedData();
 }
