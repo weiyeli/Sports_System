@@ -95,17 +95,17 @@ void ShowStuData()
 	}
 
 	system("cls");
-	printf_s("  学号\t\t姓名\t\t性别\t\t跑步\t\t跳远 \t\t铅球\n");
+	printf_s("   学号\t\t姓名\t\t性别\t\t100米(单位:秒)\t\t跳远(单位:米) \t\t铅球(单位:米)\n");
 
 	while (pTemp != NULL)
 	{
-		printf_s("%10s\t%4s\t",pTemp->ID, pTemp->Name);
+		printf_s("%10s\t%4s\t\t",pTemp->ID, pTemp->Name);
 		char* sOrder_Male = "男";
 		char* sOrder_Female = "女";
 		if (pTemp->gender == 1)
-			printf_s("%4s\t", sOrder_Male);
-		else printf_s("%4s\t", sOrder_Female);
-		printf_s("%12.2f\t%12.2f\t%12.2f\n", pTemp->Mark_Running, pTemp->Mark_Jumping, pTemp->Mark_Shot);
+			printf_s("%4s\t\t", sOrder_Male);
+		else printf_s("%4s\t\t", sOrder_Female);
+		printf_s("%8.2f\t\t%8.2f\t\t%8.2f\n", pTemp->Mark_Running, pTemp->Mark_Jumping, pTemp->Mark_Shot);
 		
 		//往下走一步
 		pTemp = pTemp->pnext;
@@ -121,6 +121,7 @@ void showSingleSTU(STUNODE* pTemp)
 		return;
 	}
 
+	setColor(10, 0);
 	system("cls");
 	printf_s("  学号\t\t姓名\t\t性别\t\t跑步\t\t跳远 \t\t铅球\n");
 	printf_s("%10s\t%4s\t", pTemp->ID, pTemp->Name);
@@ -293,6 +294,8 @@ void ModifyStuData(STUNODE* pTemp)
 //删除学生信息
 void DeleteStuData(STUNODE* pNode)
 {
+	//printf_s("测试删除情况,头是%s\n",g_pHead->ID);
+	//printf_s("测试删除情况,尾是%s\n", g_pEnd->ID);
 	if (NULL == pNode)
 	{
 		printf_s("查无此人!\n");
@@ -302,12 +305,14 @@ void DeleteStuData(STUNODE* pNode)
 	//只有一个节点
 	if (g_pHead == g_pEnd)
 	{
+		//printf_s("我是1\n");
 		free(g_pHead);
 		g_pHead = NULL;
 		g_pEnd = NULL;
 	}
 	// 只有两个节点
 	else if (g_pHead->pnext == g_pEnd) {
+		//printf_s("我是2\n");
 		//如果传进来的是头
 		if (g_pHead == pNode) {
 			free(g_pHead);
@@ -319,16 +324,21 @@ void DeleteStuData(STUNODE* pNode)
 			g_pEnd = g_pHead;
 			g_pHead->pnext = NULL; //小心野指针
 		}
+	}
+
 		//节点数大于等于三
 		else {
+			//printf_s("我是3\n");
 			STUNODE* pTemp = g_pHead;
 
 			//判断头
 			if (g_pHead == pNode)
 			{
 				//记住头
+				//printf_s("%s我是测试1\n", g_pHead->ID);
 				pTemp = g_pHead;
 				g_pHead = g_pHead->pnext;
+				//printf_s("%s我是测试2\n", g_pHead->ID);
 				free(pTemp);
 				pTemp = NULL;
 				return;
@@ -356,7 +366,6 @@ void DeleteStuData(STUNODE* pNode)
 					pTemp = pTemp->pnext;
 			}
 		}
-	}
 }
 
 
