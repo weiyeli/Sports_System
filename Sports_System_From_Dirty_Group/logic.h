@@ -555,6 +555,7 @@ void ReadSTUFromFile()
 	fclose(pFile);
 }
 
+
 //显示100米跑信息
 void ShowRunningMes()
 {
