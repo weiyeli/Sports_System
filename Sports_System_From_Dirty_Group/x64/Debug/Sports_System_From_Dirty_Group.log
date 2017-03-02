@@ -1,0 +1,119 @@
+﻿cl : 命令行 warning D9002: 忽略未知选项“-pthread”
+cl : 命令行 warning D9002: 忽略未知选项“-mms-bitfields”
+  view.cpp
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(39): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(119): note: 参见“strcpy”的声明
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(40): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(119): note: 参见“strcpy”的声明
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(250): warning C4473: “scanf_s”: 没有为格式字符串传递足够的参数
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(250): note: 占位符和其参数预计 2 可变参数，但提供的却是 1 参数
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(250): note: 缺失的可变参数 2 为格式字符串“%c”所需
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(250): note: 此参数用作缓冲区大小
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(252): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(119): note: 参见“strcpy”的声明
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(266): warning C4473: “scanf_s”: 没有为格式字符串传递足够的参数
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(266): note: 占位符和其参数预计 2 可变参数，但提供的却是 1 参数
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(266): note: 缺失的可变参数 2 为格式字符串“%c”所需
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(266): note: 此参数用作缓冲区大小
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(268): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(119): note: 参见“strcpy”的声明
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(282): warning C4473: “scanf_s”: 没有为格式字符串传递足够的参数
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(282): note: 占位符和其参数预计 2 可变参数，但提供的却是 1 参数
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(282): note: 缺失的可变参数 2 为格式字符串“%c”所需
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(282): note: 此参数用作缓冲区大小
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(298): warning C4473: “scanf_s”: 没有为格式字符串传递足够的参数
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(298): note: 占位符和其参数预计 2 可变参数，但提供的却是 1 参数
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(298): note: 缺失的可变参数 2 为格式字符串“%c”所需
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(298): note: 此参数用作缓冲区大小
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(315): warning C4473: “scanf_s”: 没有为格式字符串传递足够的参数
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(315): note: 占位符和其参数预计 2 可变参数，但提供的却是 1 参数
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(315): note: 缺失的可变参数 2 为格式字符串“%c”所需
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(315): note: 此参数用作缓冲区大小
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(331): warning C4473: “scanf_s”: 没有为格式字符串传递足够的参数
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(331): note: 占位符和其参数预计 2 可变参数，但提供的却是 1 参数
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(331): note: 缺失的可变参数 2 为格式字符串“%c”所需
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(331): note: 此参数用作缓冲区大小
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(437): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(205): note: 参见“fopen”的声明
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(449): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(119): note: 参见“strcpy”的声明
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(450): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(90): note: 参见“strcat”的声明
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(452): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(90): note: 参见“strcat”的声明
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(453): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(90): note: 参见“strcat”的声明
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(457): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(90): note: 参见“strcat”的声明
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(458): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(90): note: 参见“strcat”的声明
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(460): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(90): note: 参见“strcat”的声明
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(462): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1769): note: 参见“sprintf”的声明
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(464): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(90): note: 参见“strcat”的声明
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(465): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(90): note: 参见“strcat”的声明
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(467): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1769): note: 参见“sprintf”的声明
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(469): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(90): note: 参见“strcat”的声明
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(470): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(90): note: 参见“strcat”的声明
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(472): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1769): note: 参见“sprintf”的声明
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(474): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(90): note: 参见“strcat”的声明
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(475): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(90): note: 参见“strcat”的声明
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(536): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(541): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(546): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(492): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(205): note: 参见“fopen”的声明
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(515): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(453): note: 参见“strtok”的声明
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(516): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(119): note: 参见“strcpy”的声明
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(525): warning C4996: 'strtok': This function or variable may be unsafe. Consider using strtok_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(453): note: 参见“strtok”的声明
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\logic.h(527): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(119): note: 参见“strcpy”的声明
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\view.cpp(73): warning C4473: “scanf_s”: 没有为格式字符串传递足够的参数
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\view.cpp(73): note: 占位符和其参数预计 2 可变参数，但提供的却是 1 参数
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\view.cpp(73): note: 缺失的可变参数 2 为格式字符串“%c”所需
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\view.cpp(73): note: 此参数用作缓冲区大小
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\view.cpp(111): warning C4473: “scanf_s”: 没有为格式字符串传递足够的参数
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\view.cpp(111): note: 占位符和其参数预计 2 可变参数，但提供的却是 1 参数
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\view.cpp(111): note: 缺失的可变参数 2 为格式字符串“%c”所需
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\view.cpp(111): note: 此参数用作缓冲区大小
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\view.cpp(130): warning C4473: “scanf_s”: 没有为格式字符串传递足够的参数
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\view.cpp(130): note: 占位符和其参数预计 2 可变参数，但提供的却是 1 参数
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\view.cpp(130): note: 缺失的可变参数 2 为格式字符串“%c”所需
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\view.cpp(130): note: 此参数用作缓冲区大小
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\view.cpp(149): warning C4473: “scanf_s”: 没有为格式字符串传递足够的参数
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\view.cpp(149): note: 占位符和其参数预计 2 可变参数，但提供的却是 1 参数
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\view.cpp(149): note: 缺失的可变参数 2 为格式字符串“%c”所需
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\view.cpp(149): note: 此参数用作缓冲区大小
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\view.cpp(184): warning C4473: “scanf_s”: 没有为格式字符串传递足够的参数
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\view.cpp(184): note: 占位符和其参数预计 2 可变参数，但提供的却是 1 参数
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\view.cpp(184): note: 缺失的可变参数 2 为格式字符串“%c”所需
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\view.cpp(184): note: 此参数用作缓冲区大小
+d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\view.cpp(192): warning C4473: “scanf_s”: 没有为格式字符串传递足够的参数
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\view.cpp(192): note: 占位符和其参数预计 2 可变参数，但提供的却是 1 参数
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\view.cpp(192): note: 缺失的可变参数 2 为格式字符串“%c”所需
+  d:\vsprojects\sports_system_from_dirty_group\sports_system_from_dirty_group\view.cpp(192): note: 此参数用作缓冲区大小
+view.obj : error LNK2005: "void __cdecl AddStuMSG(char *,char *,int,float,float,float)" (?AddStuMSG@@YAXPEAD0HMMM@Z) 已经在 Sports_System_From_Dirty_Group.obj 中定义
+view.obj : error LNK2005: "void __cdecl DeleteStuData(struct Student *)" (?DeleteStuData@@YAXPEAUStudent@@@Z) 已经在 Sports_System_From_Dirty_Group.obj 中定义
+view.obj : error LNK2005: "struct Student * __cdecl FindSTUByIDOrNmae(char *)" (?FindSTUByIDOrNmae@@YAPEAUStudent@@PEAD@Z) 已经在 Sports_System_From_Dirty_Group.obj 中定义
+view.obj : error LNK2005: "void __cdecl FreeLinkedData(void)" (?FreeLinkedData@@YAXXZ) 已经在 Sports_System_From_Dirty_Group.obj 中定义
+view.obj : error LNK2005: "void __cdecl ModifyStuData(struct Student *)" (?ModifyStuData@@YAXPEAUStudent@@@Z) 已经在 Sports_System_From_Dirty_Group.obj 中定义
+view.obj : error LNK2005: "void __cdecl ReadSTUFromFile(void)" (?ReadSTUFromFile@@YAXXZ) 已经在 Sports_System_From_Dirty_Group.obj 中定义
+view.obj : error LNK2005: "void __cdecl SaveStuToFile(void)" (?SaveStuToFile@@YAXXZ) 已经在 Sports_System_From_Dirty_Group.obj 中定义
+view.obj : error LNK2005: "void __cdecl ShowRunningMes(void)" (?ShowRunningMes@@YAXXZ) 已经在 Sports_System_From_Dirty_Group.obj 中定义
+view.obj : error LNK2005: "void __cdecl ShowStuData(void)" (?ShowStuData@@YAXXZ) 已经在 Sports_System_From_Dirty_Group.obj 中定义
+view.obj : error LNK2005: "void __cdecl showSingleSTU(struct Student *)" (?showSingleSTU@@YAXPEAUStudent@@@Z) 已经在 Sports_System_From_Dirty_Group.obj 中定义
+view.obj : error LNK2005: "struct Student * g_pHead" (?g_pHead@@3PEAUStudent@@EA) 已经在 Sports_System_From_Dirty_Group.obj 中定义
+view.obj : error LNK2005: "struct Student * g_pEnd" (?g_pEnd@@3PEAUStudent@@EA) 已经在 Sports_System_From_Dirty_Group.obj 中定义
+D:\VSProjects\Sports_System_From_Dirty_Group\x64\Debug\Sports_System_From_Dirty_Group.exe : fatal error LNK1169: 找到一个或多个多重定义的符号
