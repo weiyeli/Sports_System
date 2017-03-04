@@ -30,9 +30,6 @@
     <ClInclude Include="initialize_file.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="main_page.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="conpetition_item.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -43,6 +40,15 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="login_operate.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="students_main_page.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="teachers_main_page.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="addmin_main_page.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

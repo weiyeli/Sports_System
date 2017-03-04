@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "login_page.h"
-#include "main_page.h"
+#include "students_main_page.h"
 
 
 char Account[20];

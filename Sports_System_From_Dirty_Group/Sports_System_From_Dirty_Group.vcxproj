@@ -141,15 +141,17 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="addmin_main_page.h" />
     <ClInclude Include="conpetition_item.h" />
     <ClInclude Include="login_page.h" />
     <ClInclude Include="initialize_file.h" />
     <ClInclude Include="students.h" />
     <ClInclude Include="login_operate.h" />
-    <ClInclude Include="main_page.h" />
+    <ClInclude Include="students_main_page.h" />
     <ClInclude Include="save.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="teachers_main_page.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sports_System_From_Dirty_Group.cpp" />

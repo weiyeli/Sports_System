@@ -5,12 +5,10 @@
 #include "students.h"
 #include <Windows.Applicationmodel.Activation.h>
 
+int college;  //学院
 char ID[20]; //学号
 char Name[10];  //学生姓名
 int gender; //性别
-float Mark_Running;
-float Mark_Jumping;
-float Mark_shot;
 char bOrder = 'q';
 char sOrder[20];
 int flag = 1;
@@ -60,6 +58,9 @@ void Show_Main_Page()
 			while (flag)
 			{
 				//添加学生信息
+				printf_s("输入学院(工1医2法3): ");
+				getchar();
+				scanf_s("%d",&college);
 				printf_s("输入学号: ");
 				getchar();
 				gets_s(ID);
@@ -67,14 +68,8 @@ void Show_Main_Page()
 				gets_s(Name);
 				printf_s("输入性别(男1/女0): ");
 				scanf_s("%d", &gender);
-				printf_s("输入100米成绩(单位: 秒),未参加则输入零: ");
-				scanf_s("%f", &Mark_Running);
-				printf_s("输入跳远成绩(单位: 米),未参加则输入零: ");
-				scanf_s("%f", &Mark_Jumping);
-				printf_s("输入铅球成绩(单位: 米)，未参加则输入零: ");
-				scanf_s("%f", &Mark_shot);
 				getchar();
-				AddStuMSG(ID, Name, gender, Mark_Running, Mark_Jumping, Mark_shot);
+				AddStuMSG(college,ID, Name, gender);
 				printf_s("是否继续输入: y/n\n");
 				scanf_s("%c",&bOrder);
 				if (bOrder != 'y'){
