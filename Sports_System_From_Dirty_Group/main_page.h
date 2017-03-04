@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "logic.h"
+#include "students.h"
 #include <Windows.Applicationmodel.Activation.h>
 
 char ID[20]; //Ñ§ºÅ

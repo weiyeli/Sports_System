@@ -3,10 +3,10 @@
 
 #include "stdafx.h"
 #include <stdlib.h>
-#include "display.h"
-#include "login.h"
+#include "login_page.h"
+#include "login_operate.h"
 #include "initialize_file.h"
-#include "logic.h"
+#include "students.h"
 #define MAX 1000
 
 int main()

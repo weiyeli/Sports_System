@@ -16,12 +16,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
-    <Text Include="Student.txt">
-      <Filter>资源文件</Filter>
-    </Text>
-    <Text Include="password.txt">
-      <Filter>资源文件</Filter>
-    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -33,19 +27,22 @@
     <ClInclude Include="save.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="display.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="login.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="initialize_file.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="main_page.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="logic.h">
+    <ClInclude Include="conpetition_item.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="students.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="login_page.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="login_operate.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

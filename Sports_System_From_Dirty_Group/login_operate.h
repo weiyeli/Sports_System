@@ -1,7 +1,7 @@
 #pragma once
 #include <stdlib.h>
 #include <stdio.h>
-#include "display.h"
+#include "login_page.h"
 #include "main_page.h"
 
 int Password_judge(char* account, char* password)

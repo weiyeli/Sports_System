@@ -12,6 +12,8 @@ typedef struct Student
 	float Mark_Running;
 	float Mark_Jumping;
 	float Mark_Shot;
+	int item_count = 0;  //记录已报名项目的数目
+
 	Student* pnext;  //指针
 } STUNODE;
 
@@ -433,7 +435,7 @@ void SaveStuToFile()
 	}
 
 	//打开文件
-	pFile = fopen("dat.txt","wb+");
+	pFile = fopen("students.txt","wb+");
 	if (NULL == pFile)
 	{
 		printf_s("文件打开失败\n");
@@ -488,7 +490,7 @@ void SaveStuToFile()
 //读取文件中的学生信息
 void ReadSTUFromFile()
 {
-	FILE *pFile = fopen("dat.txt","rb+");
+	FILE *pFile = fopen("students.txt","rb+");
 	if (NULL == pFile)
 	{
 		printf_s("文件打开失败\n");
