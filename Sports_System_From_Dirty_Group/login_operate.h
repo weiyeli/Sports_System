@@ -73,7 +73,7 @@ void read_account_password_property()
 	gets_s(Account);
 	SetPos(25, 6);
 	gets_s(Password);
-	SetPos(25,7);
+	SetPos(50,7);
 	Property = getchar();
 	getchar();
 }
