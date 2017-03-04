@@ -515,7 +515,6 @@ void ReadSTUFromFile()
 		//×Ö·û´®ÇÐ¸î
 		result = strtok(strBuf, delims);
 		strcpy(ID, result);
-		//puts(ID);
 
 		while (NULL != result)
 		{
