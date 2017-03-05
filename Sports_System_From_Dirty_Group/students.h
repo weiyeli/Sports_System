@@ -6,12 +6,12 @@
 
 typedef struct Student
 {
-	char ID[20];		  //学号
+	char ID[10];				  //学号
 	char Name[10];  //学生姓名
 	int gender;		 //性别
 	int college;	    //所属学院
+	int item_score[3][2];	//报名的项目代码和成绩
 	int item_count = 0;  //记录已报名项目的数目
-
 	Student* pnext;  //指针
 } STUNODE;
 
@@ -20,14 +20,14 @@ STUNODE* g_pHead = NULL;
 STUNODE* g_pEnd = NULL;
 
 //函数声明
-void AddStuMSG(int college, char* arrStuID, char* arrStuName, int gender);
+void AddStuMSG(int college, int arrStuID, char* arrStuName, int gender);
 void DeleteStuData(STUNODE* pNode);
 void FreeLinkedData();
 void ShowStuData();
 
 
 //添加学生信息
-void AddStuMSG(int college, char* arrStuID, char* arrStuName, int gender)
+void AddStuMSG(int college, int arrStuID, char* arrStuName, int gender)
 {
 	//检验参数的合法性
 	if (NULL == arrStuName|| NULL == arrStuID)
@@ -41,7 +41,7 @@ void AddStuMSG(int college, char* arrStuID, char* arrStuName, int gender)
 	//创建一个节点
 	STUNODE* pNode = (STUNODE*)malloc(sizeof(STUNODE));
 	//节点成员初始化
-	strcpy(pNode->ID, arrStuID);
+	pNode->ID = arrStuID;
 	strcpy(pNode->Name, arrStuName);
 	pNode->gender = gender;
 	pNode->college = college;
@@ -61,10 +61,10 @@ void AddStuMSG(int college, char* arrStuID, char* arrStuName, int gender)
 
 
 	//如果链表不为空,按学号从小到大插入节点
- 	while (atoi(pTemp->ID) <= atoi(pNode->ID))
+ 	while ( pTemp->ID <= pNode->ID)
 	{
 		//如果两个学号相等，直接退出
-		if (atoi(pTemp->ID) == atoi(pNode->ID))
+		if (pTemp->ID == pNode->ID)
 		{
 			printf_s("error: 已存在该学号的学生!\n");
 			return;
@@ -155,7 +155,7 @@ void ShowStuData()
 			printf_s("医学院\t\t");
 		else if (pTemp->college == 3)
 			printf_s("法学院\t\t");
-		printf_s("%10s\t%4s\t\t",pTemp->ID, pTemp->Name);
+		printf_s("%10d\t%4s\t\t",pTemp->ID, pTemp->Name);
 		char* sOrder_Male = "男";
 		char* sOrder_Female = "女";
 		if (pTemp->gender == 1)
@@ -185,7 +185,7 @@ void showSingleSTU(STUNODE* pTemp)
 		printf_s("医学院\t\t");
 	else if (pTemp->college == 3)
 		printf_s("法学院\t\t");
-	printf_s("%10s\t%4s\t\t", pTemp->ID, pTemp->Name);
+	printf_s("%10d\t%4s\t\t", pTemp->ID, pTemp->Name);
 	char* sOrder_Male = "男";
 	char* sOrder_Female = "女";
 	if (pTemp->gender == 1)
@@ -217,7 +217,7 @@ STUNODE* FindSTUByIDOrNmae(char* DATA)
 	while (pTemp)
 	{
 
-		if ((0 == strcmp(pTemp->ID, DATA)) || (0 == strcmp(pTemp->Name, DATA)))
+		if ((pTemp->ID, DATA)) || (0 == strcmp(pTemp->Name, DATA)))
 			return pTemp;
 		pTemp = pTemp->pnext;
 	}
@@ -246,7 +246,7 @@ void ModifyStuData(STUNODE* pTemp)
 
 	//修改学生信息
 	int college;			//学院
-	char ID[20];			//学号
+	int ID;			//学号
 	char Name[10];    //学生姓名
 	int gender;		   //性别
 
@@ -269,13 +269,13 @@ void ModifyStuData(STUNODE* pTemp)
 	//修改学号
 	printf_s("请输入新的学号(无需修改则输入0): ");
 	getchar();
-	gets_s(ID);
-	if (strcmp(ID, "0") != 0) {
+	scanf_s("%d",&ID);
+	if (ID!= 0) {
 		while (flag) {
-			printf_s("是否要将学号%s修改为%s？ y/n\n", pTemp->ID, ID);
+			printf_s("是否要将学号%d修改为%d？ y/n\n", pTemp->ID, ID);
 			scanf_s("%c", &cOrder);
 			if (cOrder == 'y') {
-				strcpy(pTemp->ID, ID);
+				pTemp->ID = ID;
 				flag = 0;
 			}
 		}
@@ -428,7 +428,9 @@ void SaveStuToFile()
 			strcat(strBuf, "3");
 		strcat(strBuf, "#");
 		//学号复制进去
-		strcpy(strBuf,pTemp->ID);
+		char idbuf[11];
+		itoa(pTemp->ID, idbuf, 10);
+		strcpy(strBuf,idbuf);
 		strcat(strBuf,"#");
 		//姓名
 		strcat(strBuf,pTemp->Name);
@@ -465,7 +467,7 @@ void ReadSTUFromFile()
 
 	char strBuf[60] = { '\0' };
 	int college;			//学院
-	char ID[20];			//学号
+	int ID;					//学号
 	char Name[10];    //学生姓名
 	int gender;		   //性别
 
@@ -488,7 +490,7 @@ void ReadSTUFromFile()
 
 			result = strtok(NULL, delims);
 			if (0 == nCount)
-				strcpy(ID, result);
+				ID = atoi(result);
 			//puts(Name);
 
 			if (1 == nCount) {
