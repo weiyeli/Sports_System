@@ -1,14 +1,14 @@
 #pragma once
 #include <stdio.h>
 #include <windows.h>
-#include "comprtition_item.h"
+#include "competition_item.h"
 
 
 //全局变量
 int id;							//项目代码
 char item_name[10];		//项目名称
 int item_nature;			//项目性质,1代表田赛,2代表径赛
-char item_time[10];			    //比赛时间
+char item_time[20];			    //比赛时间
 char item_location[10];			//比赛地点
 
 void Show_Admin_Menu()
@@ -120,19 +120,22 @@ void Show_Admin_Main_Page()
 				//保存学生信息
 		case 4: {
 
-			printf_s("输入比赛项目代码: ");
 			getchar();
+			printf_s("输入比赛项目代码: ");
 			scanf_s("%d", &id);
 			printf_s("输入比赛名称: ");
 			getchar();
 			gets_s(item_name);
 			printf_s("输入比赛性质(1田赛2径赛): ");
 			scanf_s("%d", &item_nature);
-			printf_s("输入比赛时间: ");
-			scanf_s("%d", &item_time);
 			getchar();
+			printf_s("输入比赛时间: ");
+			gets_s(item_time);
+			//getchar();
 			printf_s("输入比赛地点: ");
 			gets_s(item_location);
+			//我是检测
+			puts(item_location);
 			register_item(id, item_name, item_nature, item_time, item_location);
 			printf_s("是否继续输入: y/n\n");
 			scanf_s("%c", &bOrder);

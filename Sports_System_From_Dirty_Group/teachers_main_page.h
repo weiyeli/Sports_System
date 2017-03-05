@@ -43,4 +43,5 @@ void Show_Tea_Main_Page()
 		int iOrder = -1;
 		Show_Tea_Menu();
 		setColor(6, 0);
+	}
 }

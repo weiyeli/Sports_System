@@ -142,7 +142,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="addmin_main_page.h" />
-    <ClInclude Include="conpetition_item.h" />
+    <ClInclude Include="competition_item.h" />
     <ClInclude Include="login_page.h" />
     <ClInclude Include="initialize_file.h" />
     <ClInclude Include="public_func.h" />

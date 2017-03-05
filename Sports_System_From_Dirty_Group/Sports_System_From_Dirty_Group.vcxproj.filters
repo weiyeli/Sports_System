@@ -30,9 +30,6 @@
     <ClInclude Include="initialize_file.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="conpetition_item.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="students.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -52,6 +49,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="public_func.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="competition_item.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
