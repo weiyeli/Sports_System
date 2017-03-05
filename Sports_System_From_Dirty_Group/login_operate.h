@@ -3,18 +3,24 @@
 #include <stdio.h>
 #include "login_page.h"
 #include "students_main_page.h"
+#include "teachers_main_page.h"
+#include "addmin_main_page.h"
 
 
+//奇怪的全局变量
 char Account[20];
 char Password[20];
 char Property;
 FILE *fp = NULL;
 char filebuf[30];
+char user_info;
+
 
 int read_from_file(FILE* pFile, char* account,char* password);
 
 int Password_judge(char* account, char* password, char property)
 {
+	user_info = property;
 	//判断账户属性
 	switch (property)
 	{
@@ -93,7 +99,12 @@ void Login()
 
 	if (s == 1)
 	{
-		Show_Main_Page();
+		if (user_info == '1')
+			Show_Stu_Main_Page();
+		if (user_info == '2')
+			Show_Tea_Main_Page();
+		if (user_info == 'x')
+			Show_Admin_Main_Page();
 	}
 }
 

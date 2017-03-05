@@ -150,11 +150,11 @@ void ShowStuData()
 	while (pTemp != NULL)
 	{
 		if (pTemp->college == 1)
-			printf_s("工学院");
+			printf_s("工学院\t\t");
 		else if (pTemp->college == 2)
-			printf_s("医学院");
+			printf_s("医学院\t\t");
 		else if (pTemp->college == 3)
-			printf_s("法学院");
+			printf_s("法学院\t\t");
 		printf_s("%10s\t%4s\t\t",pTemp->ID, pTemp->Name);
 		char* sOrder_Male = "男";
 		char* sOrder_Female = "女";
@@ -180,11 +180,11 @@ void showSingleSTU(STUNODE* pTemp)
 	system("cls");
 	printf_s(" 学院\t\t学号\t\t姓名\t\t性别\n");
 	if (pTemp->college == 1)
-		printf_s("工学院");
+		printf_s("工学院\t\t");
 	else if (pTemp->college == 2)
-		printf_s("医学院");
+		printf_s("医学院\t\t");
 	else if (pTemp->college == 3)
-		printf_s("法学院");
+		printf_s("法学院\t\t");
 	printf_s("%10s\t%4s\t\t", pTemp->ID, pTemp->Name);
 	char* sOrder_Male = "男";
 	char* sOrder_Female = "女";

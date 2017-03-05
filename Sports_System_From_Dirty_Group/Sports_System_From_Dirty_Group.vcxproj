@@ -145,6 +145,7 @@
     <ClInclude Include="conpetition_item.h" />
     <ClInclude Include="login_page.h" />
     <ClInclude Include="initialize_file.h" />
+    <ClInclude Include="public_func.h" />
     <ClInclude Include="students.h" />
     <ClInclude Include="login_operate.h" />
     <ClInclude Include="students_main_page.h" />
