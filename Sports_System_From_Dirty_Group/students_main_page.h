@@ -54,20 +54,8 @@ void Show_Stu_Main_Page()
 		case 1: {
 			while (flag)
 			{
-				//添加学生信息
-				printf_s("输入学院(工1医2法3): ");
-				getchar();
-				scanf_s("%d",&college);
-				printf_s("输入学号: ");
-				getchar();
-				gets_s(ID);
-				printf_s("输入姓名: ");
-				gets_s(Name);
-				printf_s("输入性别(男1/女0): ");
-				scanf_s("%d", &gender);
-				getchar();
-				Add_Stu_MSG(college,ID, Name, gender);
-				printf_s("是否继续输入: y/n\n");
+				
+				printf_s("是否继续报名: y/n\n");
 				scanf_s("%c",&bOrder);
 				if (bOrder != 'y'){
 					Return_To_Main_Menu();

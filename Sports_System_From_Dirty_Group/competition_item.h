@@ -15,7 +15,7 @@ typedef struct item
 	//int item_number_of_students;				//参加比赛的学生人数
 	float item_grade = 0;								//比赛成绩
 	int item_score = 0;									//个人得分;
-	item* pNext = NULL;;								//下一个比赛项目
+	item* pNext = NULL;								//下一个比赛项目
 }ITEMNODE;
 
 //声明链表的头和尾
@@ -33,10 +33,59 @@ void register_item(char* item_id, char* item_name, int item_nature, char* item_t
 	strcpy(pNode->item_time, item_time);
 	strcpy(pNode->item_location, item_location);
 
-	//头和尾指针都指向首节点
-	i_pHead = pNode;
-	i_pEnd = pNode;
+	//如果为空，头和尾指针都指向首节点
+	if (NULL == i_pHead || NULL == i_pEnd)
+	{
+		i_pHead = pNode;
+		i_pEnd = pNode;
+		pNode->pNext = NULL;
+		return;
+	}
+
+	ITEMNODE* pTemp = i_pHead;	//用来遍历每一个节点
+	ITEMNODE* tTemp = NULL;			//标记前置节点
+
+
+	//如果链表不为空,按项目代码从小到大插入节点
+	while (atoi(pNode->item_id) <= atoi(item_id))
+	{
+		//如果两个学号相等，直接退出
+		if (pTemp->item_id == pNode->item_id)
+		{
+			printf_s("error: 已存在该项目!\n");
+			return;
+		}
+
+		tTemp = pTemp;
+		pTemp = pTemp->pNext;
+
+		if (pTemp == NULL)
+			break;
+	}
+
+	//刚好插在头部
+	if (pTemp == i_pHead)
+	{
+		pNode->pNext = pTemp;
+		i_pHead = pNode;
+		pTemp = NULL;
+		return;
+	}
+	//插在尾部
+	else if (pTemp == NULL) {
+		tTemp->pNext = pNode;
+		i_pEnd = pNode;
+		pNode->pNext = NULL;
+		return;
+	}
+
+	//插在中间
+	else {
+		tTemp->pNext = pNode;
+		pNode->pNext = pTemp;
+	}
 }
+
 
 //查找指定的比赛项目
 ITEMNODE* Find_Item_By_ID_Or_Nmae(char* DATA)
@@ -68,6 +117,7 @@ ITEMNODE* Find_Item_By_ID_Or_Nmae(char* DATA)
 	//printf_s("查无此节点");
 	return NULL;
 }
+
 
 //项目报名
 void sign_up_item(char* stu_data, char* item_data) {
@@ -117,16 +167,16 @@ void sign_up_item(char* stu_data, char* item_data) {
 
 
 //释放项目链表
-void Free_Admin_LinkedData()
+void Free_Item_LinkedData()
 {
-	STUNODE* pTemp = g_pHead;
-	while (g_pHead != NULL)
+	ITEMNODE* pTemp = i_pHead;
+	while (i_pHead != NULL)
 	{
 		//记录节点
-		pTemp = g_pHead;
+		pTemp = i_pHead;
 
 		//向后移动一位
-		g_pHead = g_pHead->pnext;
+		i_pHead = i_pHead->pNext;
 
 		//释放链表
 		free(pTemp);
@@ -142,14 +192,14 @@ void Save_Item_To_File()
 	char strScore[20] = { '\0' };
 
 	//判断链表是否为空
-	if (NULL == g_pHead)
+	if (NULL == i_pHead)
 	{
-		printf_s("学生信息为空!");
+		printf_s("项目信息为空!");
 		return;
 	}
 
 	//打开文件
-	pFile = fopen("item.txt", "wb+");
+	pFile = fopen("item.txt", "ab+");
 	if (NULL == pFile)
 	{
 		printf_s("文件打开失败\n");
@@ -161,7 +211,7 @@ void Save_Item_To_File()
 	while (pTemp)
 	{
 		//复制项目代码
-		strcat(pTemp->item_name, strBuf);
+		strcat(strBuf, pTemp->item_name);
 		strcat(strBuf, "#");
 		//复制项目名称
 		strcat(strBuf, pTemp->item_name);
@@ -178,9 +228,8 @@ void Save_Item_To_File()
 		//复制比赛地点
 		strcat(strBuf, pTemp->item_location);
 		strcat(strBuf, "#");
+		puts(strBuf);
 		//复制报名的学生信息
-
-
 
 
 		//写入文件
@@ -192,4 +241,33 @@ void Save_Item_To_File()
 
 	//关闭文件
 	fclose(pFile);
+}
+
+//显示项目信息
+void Show_Com_info()
+{
+	setColor(10, 0);
+	ITEMNODE* pTemp = i_pHead;
+
+	if (NULL == i_pHead | NULL == i_pEnd)
+	{
+		printf_s("比赛项目信息为空！\n");
+		return;
+	}
+
+	system("cls");
+	printf_s("项目代码\t项目性质\t项目名称\t项目时间\t项目地点\t\n");
+
+	while (pTemp != NULL)
+	{
+		printf_s("%s\t", pTemp->item_id);
+		if (pTemp->item_nature == 1)
+			printf_s("田赛\t");
+		else if (pTemp->item_nature == 2)
+			printf_s("竞赛\t");
+		else
+			printf_s("\t");
+		printf_s("%s\t%d\t%s\t$s\t\n", pTemp->item_name, pTemp->item_nature, pTemp->item_time, pTemp->item_location);
+
+	}
 }

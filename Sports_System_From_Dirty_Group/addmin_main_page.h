@@ -135,6 +135,7 @@ void Show_Admin_Main_Page()
 			gets_s(item_location);
 			//puts(item_location); 
 			register_item(id, item_name, item_nature, item_time, item_location);
+			Save_Item_To_File();
 			printf_s(" «∑ÒºÃ–¯ ‰»Î: y/n\n");
 			scanf_s("%c", &bOrder);
 			if (bOrder != 'y') {
@@ -195,5 +196,5 @@ void Show_Admin_Main_Page()
 	}
 
 	//SaveStuToFile();
-	Free_Admin_LinkedData();
+	Free_Item_LinkedData();
 }

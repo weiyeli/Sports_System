@@ -402,7 +402,7 @@ void Save_Stu_To_File()
 	}
 
 	//打开文件
-	pFile = fopen("students.txt","wb+");
+	pFile = fopen("students.txt","ab+");
 	if (NULL == pFile)
 	{
 		printf_s("文件打开失败\n");
