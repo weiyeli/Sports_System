@@ -11,7 +11,7 @@
 
 int main()
 {
-	ReadSTUFromFile();
+	//ReadSTUFromFile();
 	display();
 	Login();
 }

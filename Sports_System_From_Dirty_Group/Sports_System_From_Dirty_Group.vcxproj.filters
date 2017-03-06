@@ -27,9 +27,6 @@
     <ClInclude Include="save.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="initialize_file.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="students.h">
       <Filter>头文件</Filter>
     </ClInclude>
