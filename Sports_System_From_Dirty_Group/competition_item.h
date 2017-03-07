@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "students.h"
+#include "students_main_page.h"
+
 
 typedef struct item
 {
@@ -21,8 +23,9 @@ ITEMNODE* i_pHead = NULL;
 ITEMNODE* i_pEnd = NULL;
 
 
+
 //注册一个比赛项目
-void register_item(char* item_id, char* item_name, int item_nature, char* item_time, char* item_location) {
+void Register_Item(char* item_id, char* item_name, int item_nature, char* item_time, char* item_location) {
 	ITEMNODE* pNode = (ITEMNODE*)malloc(sizeof(ITEMNODE));	 //申请一个项目
 
 	strcpy(pNode->item_id, item_id);
@@ -115,7 +118,6 @@ ITEMNODE* Find_Item_By_ID_Or_Nmae(char* DATA)
 	//printf_s("查无此节点");
 	return NULL;
 }
-
 
 //项目报名
 void Sign_Up_Item(char* stu_data, char* item_data) {
@@ -324,7 +326,8 @@ void Read_Item_From_File()
 		}
 
 		//将文件中的信息添加到链表中
-		Add_Stu_MSG(college, ID, Name, gender);
+		Register_Item(item_id,item_name,item_nature,item_time,item_location);
+		//Add_Item_MSG(college, ID, Name, gender);
 	}
 	fclose(pFile);
 }

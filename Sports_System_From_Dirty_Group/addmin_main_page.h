@@ -134,7 +134,7 @@ void Show_Admin_Main_Page()
 			printf_s("输入比赛地点: ");
 			gets_s(item_location);
 			//puts(item_location); 
-			register_item(id, item_name, item_nature, item_time, item_location);
+			Register_Item(id, item_name, item_nature, item_time, item_location);
 			Save_Item_To_File();
 			printf_s("是否继续输入: y/n\n");
 			scanf_s("%c", &bOrder);

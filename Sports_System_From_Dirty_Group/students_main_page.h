@@ -61,7 +61,9 @@ void Show_Stu_Main_Page()
 				Show_Com_info();
 				printf_s("请输入要报名的比赛代码: ");
 				gets_s(item_id);
-				Sign_Up_Item();
+				printf_s("请输入学号");
+				gets_s(ID);
+				Sign_Up_Item(ID,item_id);
 				printf_s("是否继续报名: y/n\n");
 				scanf_s("%c",&bOrder);
 				if (bOrder != 'y'){

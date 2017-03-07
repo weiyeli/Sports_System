@@ -3,17 +3,16 @@
 #include <stdlib.h>
 #include <string.h>
 #include "competition_item.h"
-#include "students_main_page.h"
 
 typedef struct Student
 {
-	char ID[10];				  //学号
-	char Name[10];  //学生姓名
-	int gender;		 //性别
-	int college;	    //所属学院
-	int item_score[3][2];	//报名的项目代码和成绩
-	int item_count = 0;  //记录已报名项目的数目
-	Student* pnext;  //指针
+	char ID[10];						//学号 
+	char Name[10];				    //学生姓名
+	int gender;						//性别
+	int college;						//所属学院
+	int item_score[3][2];			//报名的项目代码和成绩
+	int item_count = 0;			//记录已报名项目的数目
+	Student* pnext;				//指针
 } STUNODE;
 
 //声明链表的头和尾
@@ -21,9 +20,10 @@ STUNODE* g_pHead = NULL;
 STUNODE* g_pEnd = NULL;
 
 
+
 //添加学生信息
 void Add_Stu_MSG(int college, char* arrStuID, char* arrStuName, int gender)
-{
+{ 
 	//检验参数的合法性
 	if (NULL == arrStuName|| NULL == arrStuID)
 	{
