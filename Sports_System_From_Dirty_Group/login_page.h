@@ -30,5 +30,8 @@ void display()
 	printf_s("账号: \n");
 	SetPos(20, 6);
 	printf_s("密码: \n");
+	SetPos(20, 7);
+	SetPos(20,7);
+	printf_s("账户属性(个人1/老师2/管理员x): \n");
 	setColor(10, 0);
 }

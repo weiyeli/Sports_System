@@ -138,19 +138,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="password.txt" />
     <Text Include="ReadMe.txt" />
-    <Text Include="Student.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="display.h" />
-    <ClInclude Include="initialize_file.h" />
-    <ClInclude Include="logic.h" />
-    <ClInclude Include="login.h" />
-    <ClInclude Include="main_page.h" />
+    <ClInclude Include="addmin_main_page.h" />
+    <ClInclude Include="competition_item.h" />
+    <ClInclude Include="login_page.h" />
+    <ClInclude Include="public_func.h" />
+    <ClInclude Include="students.h" />
+    <ClInclude Include="login_operate.h" />
+    <ClInclude Include="students_main_page.h" />
     <ClInclude Include="save.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="teachers_main_page.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sports_System_From_Dirty_Group.cpp" />
