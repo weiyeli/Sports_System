@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "competition_item.h"
 #include "students_main_page.h"
 
 typedef struct Student
@@ -402,7 +403,7 @@ void Save_Stu_To_File()
 	}
 
 	//打开文件
-	pFile = fopen("students.txt","ab+");
+	pFile = fopen("students.txt","wb+");
 	if (NULL == pFile)
 	{
 		printf_s("文件打开失败\n");

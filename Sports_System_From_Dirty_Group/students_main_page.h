@@ -3,12 +3,14 @@
 #include <stdlib.h>
 #include <string.h>
 #include "students.h"
+#include "competition_item.h"
 #include <Windows.Applicationmodel.Activation.h>
 
 int college;  //学院
 char ID[20]; //学号
 char Name[10];  //学生姓名
 int gender; //性别
+char item_id[3];  //比赛代码
 char bOrder = 'q';
 char sOrder[20];
 int flag = 1;
@@ -46,6 +48,8 @@ void Show_Stu_Main_Page()
 		setColor(10, 0);
 		int iOrder = -1;
 		Show_Menu_Stu();
+		Read_Item_From_File();
+		Read_STU_From_File();
 		setColor(6, 0);
 		scanf_s("%d", &iOrder);
 
@@ -54,7 +58,10 @@ void Show_Stu_Main_Page()
 		case 1: {
 			while (flag)
 			{
-				
+				Show_Com_info();
+				printf_s("请输入要报名的比赛代码: ");
+				gets_s(item_id);
+				Sign_Up_Item();
 				printf_s("是否继续报名: y/n\n");
 				scanf_s("%c",&bOrder);
 				if (bOrder != 'y'){

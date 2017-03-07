@@ -11,11 +11,9 @@ typedef struct item
 	int item_nature;										//项目性质,1代表田赛,2代表径赛
 	char item_time[10];									//比赛时间
 	char item_location[10];								//比赛地点
-	STUNODE* item_stu[30] = {NULL};				//参加该项目的某个学生
-	//int item_number_of_students;				//参加比赛的学生人数
-	float item_grade = 0;								//比赛成绩
-	int item_score = 0;									//个人得分;
-	item* pNext = NULL;								//下一个比赛项目
+	int item_stu[8] = {-1};								//参加该项目的学生
+	int item_number_of_students;					//参加比赛的学生人数
+	item* pNext = NULL;									//下一个比赛项目
 }ITEMNODE;
 
 //声明链表的头和尾
@@ -120,7 +118,7 @@ ITEMNODE* Find_Item_By_ID_Or_Nmae(char* DATA)
 
 
 //项目报名
-void sign_up_item(char* stu_data, char* item_data) {
+void Sign_Up_Item(char* stu_data, char* item_data) {
 
 	//要报名的项目
 	ITEMNODE* i_pTemp = Find_Item_By_ID_Or_Nmae(item_data);
@@ -142,16 +140,24 @@ void sign_up_item(char* stu_data, char* item_data) {
 		return;
 	}
 
+	if (i_pTemp->item_number_of_students >= 8)
+	{
+		printf_s("报名失败，该项目已满!");
+		return;
+	}
+
 	//项目里面的学生数组的指针
-	STUNODE** p_strArray = i_pTemp->item_stu;
+
+	//STUNODE** p_strArray = i_pTemp->item_stu;
 
 	//遍历项目中的学生数组
 	int i = 0;
-	while (p_strArray[i] == NULL)
+	while (i_pTemp->item_stu[i] == -1)
 		i++;
 
-	//将该学生添加到该项目中
-	p_strArray[i - 1] = s_pTemp;
+	//将该学生的学号添加到该项目中
+	i_pTemp->item_stu[i] = atoi(s_pTemp->ID);
+	//p_strArray[i - 1] = s_pTemp;
 
 	//在学生信息中添加报名的项目
 
@@ -163,6 +169,8 @@ void sign_up_item(char* stu_data, char* item_data) {
 		}
 	}
 	
+	//报名的学生数加一
+	i_pTemp->item_number_of_students++;
 }
 
 
@@ -188,8 +196,9 @@ void Save_Item_To_File()
 {
 	FILE* pFile = NULL;
 	ITEMNODE* pTemp = i_pHead;
-	char strBuf[60] = { '\0' };
+	char strBuf[120] = { '\0' };
 	char strScore[20] = { '\0' };
+	char* buf;
 
 	//判断链表是否为空
 	if (NULL == i_pHead)
@@ -199,7 +208,7 @@ void Save_Item_To_File()
 	}
 
 	//打开文件
-	pFile = fopen("item.txt", "ab+");
+	pFile = fopen("item.txt", "wb+");
 	if (NULL == pFile)
 	{
 		printf_s("文件打开失败\n");
@@ -229,8 +238,20 @@ void Save_Item_To_File()
 		strcat(strBuf, pTemp->item_location);
 		strcat(strBuf, "#");
 		puts(strBuf);
+		//复制报名人数
+		itoa(pTemp->item_number_of_students,buf,10);
+		strcat(strBuf, buf);
+		strcat(strBuf, "#");
 		//复制报名的学生信息
-
+		for (int i=0;i<8;i++)
+		{
+			if (pTemp->item_stu[i] != -1)
+			{
+			    itoa(pTemp->item_stu[i],buf,10);
+				strcat(strBuf, buf);
+				strcat(strBuf, "#");
+			}
+		}
 
 		//写入文件
 		fwrite(strBuf, 1, strlen(strBuf), pFile);
@@ -242,6 +263,73 @@ void Save_Item_To_File()
 	//关闭文件
 	fclose(pFile);
 }
+
+//读取文件中的比赛项目信息
+void Read_Item_From_File()
+{
+	FILE *pFile = fopen("item.txt", "rb+");
+	if (NULL == pFile)
+	{
+		printf_s("文件打开失败\n");
+		return;
+	}
+
+	char strBuf[120] = { '\0' };
+	char item_id[3];											//项目代码
+	char item_name[10];									//项目名称
+	int item_nature;										//项目性质,1代表田赛,2代表径赛
+	char item_time[10];									//比赛时间
+	char item_location[10];								//比赛地点
+	int item_stu[8] = { -1 };								//参加该项目的某个学生
+	int item_number_of_students;					//参加比赛的学生人数
+
+	//操作指针，读取函数
+	while (fgets(strBuf, 120, pFile))
+	{
+		int nCount = 0;
+		char delims[] = "#";
+		char *result = NULL;
+
+		//字符串切割
+		result = strtok(strBuf, delims);
+		strcpy(item_id,result);
+
+		while (NULL != result)
+		{
+			//读到换行就结束
+			if (strcmp(result, "\r\n") == 0)
+				break;
+
+			result = strtok(NULL, delims);
+			if (0 == nCount)
+				strcpy(item_name, result);
+			if (1 == nCount) 
+				item_nature = atoi(result);
+			if (2 == nCount)
+				strcpy(item_time, result);
+			if (3 == nCount)
+				strcpy(item_location, result);
+			if (4 == nCount)
+			{
+				for (int i = 0; i < 8; i++)
+				{
+					if (item_stu[i] != -1)
+					{
+						item_stu[i] = atoi(result);
+					}
+				}
+			}
+			nCount++;
+
+		}
+
+		//将文件中的信息添加到链表中
+		Add_Stu_MSG(college, ID, Name, gender);
+	}
+	fclose(pFile);
+}
+
+
 
 //显示项目信息
 void Show_Com_info()
