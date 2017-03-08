@@ -3,14 +3,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include "students.h"
-#include "competition_item.h"
 #include <Windows.Applicationmodel.Activation.h>
 
 int college;  //Ñ§Ôº
 char ID[20]; //Ñ§ºÅ
 char Name[10];  //Ñ§ÉúĞÕÃû
 int gender; //ĞÔ±ğ
-char item_id[3];  //±ÈÈü´úÂë
 char bOrder = 'q';
 char sOrder[20];
 int flag = 1;
@@ -48,8 +46,6 @@ void Show_Stu_Main_Page()
 		setColor(10, 0);
 		int iOrder = -1;
 		Show_Menu_Stu();
-		Read_Item_From_File();
-		Read_STU_From_File();
 		setColor(6, 0);
 		scanf_s("%d", &iOrder);
 
@@ -58,12 +54,16 @@ void Show_Stu_Main_Page()
 		case 1: {
 			while (flag)
 			{
+<<<<<<< HEAD
 				Show_Com_info();
 				printf_s("ÇëÊäÈëÒª±¨ÃûµÄ±ÈÈü´úÂë: ");
 				gets_s(item_id);
 				printf_s("ÇëÊäÈëÑ§ºÅ");
 				gets_s(ID);
 				Sign_Up_Item(ID,item_id);
+=======
+				
+>>>>>>> parent of 084bebe... å¥½å¤šBugå•Š
 				printf_s("ÊÇ·ñ¼ÌĞø±¨Ãû: y/n\n");
 				scanf_s("%c",&bOrder);
 				if (bOrder != 'y'){
