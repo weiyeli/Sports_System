@@ -30,12 +30,12 @@ void Add_Stu_MSG(int college, char* arrStuID, char* arrStuName, int gender)
 		return;
 	}
 
-
 	//逻辑
 	//创建一个节点
 	STUNODE* pNode = (STUNODE*)malloc(sizeof(STUNODE));
 	//节点成员初始化
 	strcpy(pNode->ID, arrStuID);
+	puts(pNode->ID);
 	strcpy(pNode->Name, arrStuName);
 	pNode->gender = gender;
 	pNode->college = college;
@@ -149,7 +149,8 @@ void Show_Stu_Data()
 			printf_s("医学院\t\t");
 		else if (pTemp->college == 3)
 			printf_s("法学院\t\t");
-		printf_s("%10s\t%4s\t\t",pTemp->ID, pTemp->Name);
+		puts(pTemp->ID);
+		//printf_s("%s\t\t%s\t\t",pTemp->ID, pTemp->Name);
 		char* sOrder_Male = "男";
 		char* sOrder_Female = "女";
 		if (pTemp->gender == 1)
@@ -458,10 +459,10 @@ void Read_STU_From_File()
 	}
 
 	char strBuf[60] = { '\0' };
-	int college;			//学院
-	char ID[10];					//学号
-	char Name[10];    //学生姓名
-	int gender;		   //性别
+	int college;					//学院
+	char ID[100];					//学号
+	char Name[10];				//学生姓名
+	int gender;					 //性别
 
 	//操作指针，读取函数
 	while (fgets(strBuf, 60, pFile))
@@ -483,16 +484,13 @@ void Read_STU_From_File()
 			result = strtok(NULL, delims);
 			if (0 == nCount)
 				strcpy(ID,result);
-			//puts(Name);
 
 			if (1 == nCount) {
 				strcpy(Name,result);
-				//printf_s("%d\n", gender);
 			}
 			if (2 == nCount)
 			{
 				gender = atoi(result);
-				//printf_s("%f\n", Mark_Running);
 			}			
 			nCount++;
 

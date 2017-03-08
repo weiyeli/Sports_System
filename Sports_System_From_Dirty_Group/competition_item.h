@@ -6,7 +6,7 @@
 
 typedef struct item
 {
-	char item_id[3];											//项目代码
+	char item_id[10];										//项目代码
 	char item_name[10];									//项目名称
 	int item_nature;										//项目性质,1代表田赛,2代表径赛
 	char item_time[10];									//比赛时间
@@ -287,7 +287,7 @@ void Show_Com_info()
 			printf_s("竞赛\t\t");
 		else
 			printf_s("\t");
-		printf_s("%s\t\t%d\t\t%s\t\t$s\t\t\n", pTemp->item_name, pTemp->item_nature, pTemp->item_time, pTemp->item_location);
+		printf_s("%s\t\t%s\t\t%s\t\t\n", pTemp->item_name, pTemp->item_time, pTemp->item_location);
 
 		pTemp = pTemp->pNext;
 	}
@@ -304,7 +304,7 @@ void Read_Item_From_File()
 	}
 
 	char strBuf[100] = { '\0' };
-	char item_id[3];											//项目代码
+	char item_id[10];										//项目代码
 	char item_name[10];									//项目名称
 	int item_nature;										//项目性质,1代表田赛,2代表径赛
 	char item_time[10];									//比赛时间
@@ -331,6 +331,8 @@ void Read_Item_From_File()
 				break;
 
 			result = strtok(NULL, delims);
+
+
 			if (0 == nCount)
 				strcpy(item_name, result);
 			//puts(Name);

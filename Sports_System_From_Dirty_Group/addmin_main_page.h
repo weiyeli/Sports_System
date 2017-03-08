@@ -247,9 +247,9 @@ void Show_Admin_Main_Page()
 		}
 
 		}
+		Free_Stu_LinkedData();
+		Free_Item_LinkedData();
 	}
 	Save_Item_To_File();
 	Save_Stu_To_File();
-	Free_Stu_LinkedData();
-	Free_Item_LinkedData();
 }
