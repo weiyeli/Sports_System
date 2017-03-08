@@ -11,11 +11,9 @@ typedef struct item
 	int item_nature;										//项目性质,1代表田赛,2代表径赛
 	char item_time[10];									//比赛时间
 	char item_location[10];								//比赛地点
-	STUNODE* item_stu[30] = { NULL };			//参加该项目的某个学生
-	int item_stu_num[8];									//参加该项目的学生学号
+	//int item_stu[30] = { -1 };							 //参加该项目的某个学生
+	int item_stu_num[8];									//参加该项目的学生
 	int item_number_of_students;					//参加比赛的学生人数
-	float item_grade = 0;								//比赛成绩
-	int item_score = 0;									//个人得分;
 	item* pNext = NULL;									//下一个比赛项目
 }ITEMNODE;
 
@@ -43,11 +41,11 @@ void register_item(char* item_id, char* item_name, int item_nature, char* item_t
 		return;
 	}
 
-	ITEMNODE* pTemp = i_pHead;	//用来遍历每一个节点
+	ITEMNODE* pTemp = i_pHead;		//用来遍历每一个节点
 	ITEMNODE* tTemp = NULL;			//标记前置节点
 
 
-									//如果链表不为空,按项目代码从小到大插入节点
+	//如果链表不为空,按项目代码从小到大插入节点
 	while (atoi(pNode->item_id) <= atoi(item_id))
 	{
 		//如果两个学号相等，直接退出
@@ -121,7 +119,7 @@ ITEMNODE* Find_Item_By_ID_Or_Nmae(char* DATA)
 
 
 //项目报名
-void sign_up_item(char* stu_data, char* item_data) {
+void Sign_Up_Item(char* stu_data, char* item_data) {
 
 	//要报名的项目
 	ITEMNODE* i_pTemp = Find_Item_By_ID_Or_Nmae(item_data);
@@ -143,19 +141,26 @@ void sign_up_item(char* stu_data, char* item_data) {
 		return;
 	}
 
-	//项目里面的学生数组的指针
-	STUNODE** p_strArray = i_pTemp->item_stu;
+	//项目人数检测
+	if (i_pTemp->item_number_of_students >= 8)
+	{
+		printf_s("报名失败，该项目人数已满!");
+		return;
+	}
 
 	//遍历项目中的学生数组
-	int i = 0;
-	while (p_strArray[i] == NULL)
-		i++;
+	for (int i=0; i<8; i++)
+	{
+		if (i_pTemp->item_stu_num[i] != -1)
+		{
+			i_pTemp->item_stu_num[i] = atoi(s_pTemp->ID);
+		}
+	}
 
 	//将该学生添加到该项目中
-	p_strArray[i - 1] = s_pTemp;
+	//p_strArray[i - 1] = s_pTemp;
 
 	//在学生信息中添加报名的项目
-
 	for (int i = 0; i < 3; i++)
 	{
 		if (s_pTemp->item_score[i][0] == -1)
@@ -164,6 +169,8 @@ void sign_up_item(char* stu_data, char* item_data) {
 		}
 	}
 
+	//报名人数加一
+	i_pTemp->item_number_of_students++;
 }
 
 
@@ -190,6 +197,7 @@ void Save_Item_To_File()
 	FILE* pFile = NULL;
 	ITEMNODE* pTemp = i_pHead;
 	char strBuf[100] = { '\0' };
+	char strbuf[15];
 	char strScore[20] = { '\0' };
 
 	//判断链表是否为空
@@ -212,7 +220,7 @@ void Save_Item_To_File()
 	while (pTemp)
 	{
 		//复制项目代码
-		strcat(strBuf, pTemp->item_name);
+		strcat(strBuf, pTemp->item_id);
 		strcat(strBuf, "#");
 		//复制项目名称
 		strcat(strBuf, pTemp->item_name);
@@ -229,9 +237,20 @@ void Save_Item_To_File()
 		//复制比赛地点
 		strcat(strBuf, pTemp->item_location);
 		strcat(strBuf, "#");
-		puts(strBuf);
+		//复制已报名人数
+		itoa(pTemp->item_number_of_students, strbuf, 10);
+		strcat(strBuf, strbuf);
+		strcat(strBuf, "#");
 		//复制报名的学生信息
-
+		for (int i = 0; i<8; i++)
+		{
+			if (pTemp->item_stu_num[i] != -1)
+			{
+				itoa(pTemp->item_stu_num[i], strbuf,10);
+				strcat(strBuf, strbuf);
+				strcat(strBuf, "#");
+			}
+		}
 
 		//写入文件
 		fwrite(strBuf, 1, strlen(strBuf), pFile);
@@ -274,6 +293,7 @@ void Show_Com_info()
 	}
 }
 
+//从文件中读取项目信息
 void Read_Item_From_File()
 {
 	FILE *pFile = fopen("item.txt", "rb+");
@@ -284,23 +304,25 @@ void Read_Item_From_File()
 	}
 
 	char strBuf[100] = { '\0' };
-	char item_id[3];									//项目代码
+	char item_id[3];											//项目代码
 	char item_name[10];									//项目名称
-	int item_nature;									//项目性质,1代表田赛,2代表径赛
+	int item_nature;										//项目性质,1代表田赛,2代表径赛
 	char item_time[10];									//比赛时间
 	char item_location[10];								//比赛地点
-	STUNODE* item_stu[30] = { NULL };
+	int item_number_of_students;					//参加比赛的学生人数
+	int item_stu_num[8];									//参加该项目的学生
 
 	//操作指针，读取函数
 	while (fgets(strBuf, 60, pFile))
 	{
 		int nCount = 0;
+		int i = 0;
 		char delims[] = "#";
 		char *result = NULL;
 
 		//字符串切割
 		result = strtok(strBuf, delims);
-		college = atoi(result);
+		strcpy(item_id,result);
 
 		while (NULL != result)
 		{
@@ -310,25 +332,31 @@ void Read_Item_From_File()
 
 			result = strtok(NULL, delims);
 			if (0 == nCount)
-				strcpy(item_id, result);
+				strcpy(item_name, result);
 			//puts(Name);
 
 			if (1 == nCount) {
-				strcpy(item_name, result);
+				item_nature = atoi(result);
 				//printf_s("%d\n", gender);
 			}
 			if (2 == nCount)
 			{
-				item_nature = atoi(result);
+				strcpy(item_time, result);
 				//printf_s("%f\n", Mark_Running);
 			}
 			if (3 == nCount) {
-				strcpy(item_time, result);
-				//printf_s("%d\n", gender);
-			}
-			if (4 == nCount) {
 				strcpy(item_location, result);
 				//printf_s("%d\n", gender);
+			}
+
+			if (nCount==4) {
+				item_number_of_students = atoi(result);
+			}
+
+			if (nCount > 4 && result !=NULL)
+			{
+				item_stu_num[i] = atoi(result);
+				i++;
 			}
 			nCount++;
 

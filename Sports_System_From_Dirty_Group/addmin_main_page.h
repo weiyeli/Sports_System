@@ -6,12 +6,17 @@
 
 
 //全局变量
-char id[3];					//项目代码
+char id[3];							//项目代码
 char item_name[10];			//项目名称
-int item_nature;			//项目性质,1代表田赛,2代表径赛
+int item_nature;				//项目性质,1代表田赛,2代表径赛
 char item_time[10];			//比赛时间
 char item_location[10];		//比赛地点
 int start_comp = 1;			//比赛开关
+char ID[10];						//学号
+char Name[10];					//学生姓名
+int gender;						 //性别
+int college;						 //所属学院
+
 
 void Show_Admin_Menu()
 {
@@ -48,6 +53,8 @@ void Show_Admin_Main_Page()
 	while (flag) {
 		setColor(10, 0);
 		int iOrder = -1;
+		Read_Item_From_File();
+		Read_STU_From_File();
 		Show_Admin_Menu();
 		setColor(6, 0);
 		scanf_s("%d", &iOrder);
