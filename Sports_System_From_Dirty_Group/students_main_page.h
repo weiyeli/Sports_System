@@ -8,7 +8,7 @@
 
 //全局变量
 char item_id[3];			//比赛代码
-char stu_id[15];			//学生学号				
+char stu_ID[15];			//学生学号				
 char bOrder = 'q';
 char sOrder[20];
 int flag = 1;
@@ -61,8 +61,8 @@ void Show_Stu_Main_Page()
 				printf_s("请输入要报名的比赛代码: ");
 				gets_s(item_id);
 				printf_s("请输入学号");
-				gets_s(stu_id);
-				Sign_Up_Item(stu_id, item_id);
+				gets_s(stu_ID);
+				Sign_Up_Item(stu_ID, item_id);
 				printf_s("报名成功!");
 				printf_s("是否继续报名: y/n\n");
 				scanf_s("%c",&bOrder);

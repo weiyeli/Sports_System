@@ -335,7 +335,6 @@ void Read_Item_From_File()
 
 			if (0 == nCount)
 				strcpy(item_name, result);
-			//puts(Name);
 
 			if (1 == nCount) {
 				item_nature = atoi(result);
@@ -348,7 +347,6 @@ void Read_Item_From_File()
 			}
 			if (3 == nCount) {
 				strcpy(item_location, result);
-				//printf_s("%d\n", gender);
 			}
 
 			if (nCount==4) {

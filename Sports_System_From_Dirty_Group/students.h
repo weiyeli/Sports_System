@@ -6,7 +6,7 @@
 
 typedef struct Student
 {
-	char ID[10];					  //学号
+	char ID[12];					  //学号
 	char Name[10];				  //学生姓名
 	int gender;					  //性别
 	int college;	                  //所属学院
@@ -14,6 +14,12 @@ typedef struct Student
 	int item_count = 0;		 //记录已报名项目的数目
 	Student* pnext;		     //指针
 } STUNODE;
+
+char strBuf[60] = { '\0' };
+int stu_college;					//学院
+char stu_id[10];					//学号
+char stu_name[10];				//学生姓名
+int stu_gender;					 //性别
 
 //声明链表的头和尾
 STUNODE* g_pHead = NULL;
@@ -35,7 +41,6 @@ void Add_Stu_MSG(int college, char* arrStuID, char* arrStuName, int gender)
 	STUNODE* pNode = (STUNODE*)malloc(sizeof(STUNODE));
 	//节点成员初始化
 	strcpy(pNode->ID, arrStuID);
-	puts(pNode->ID);
 	strcpy(pNode->Name, arrStuName);
 	pNode->gender = gender;
 	pNode->college = college;
@@ -139,7 +144,7 @@ void Show_Stu_Data()
 	}
 
 	system("cls");
-	printf_s(" 学院\t\t学号\t\t姓名\t\t性别\n");
+	printf_s(" 学院\t\t学号\t\t\t姓名\t\t性别\n");
 
 	while (pTemp != NULL)
 	{
@@ -149,8 +154,8 @@ void Show_Stu_Data()
 			printf_s("医学院\t\t");
 		else if (pTemp->college == 3)
 			printf_s("法学院\t\t");
-		puts(pTemp->ID);
-		//printf_s("%s\t\t%s\t\t",pTemp->ID, pTemp->Name);
+		
+		printf_s("%10s\t\t%4s\t\t",pTemp->ID, pTemp->Name);
 		char* sOrder_Male = "男";
 		char* sOrder_Female = "女";
 		if (pTemp->gender == 1)
@@ -403,7 +408,7 @@ void Save_Stu_To_File()
 	}
 
 	//打开文件
-	pFile = fopen("students.txt","ab+");
+	pFile = fopen("students.txt","wb+");
 	if (NULL == pFile)
 	{
 		printf_s("文件打开失败\n");
@@ -458,11 +463,6 @@ void Read_STU_From_File()
 		return;
 	}
 
-	char strBuf[60] = { '\0' };
-	int college;					//学院
-	char ID[100];					//学号
-	char Name[10];				//学生姓名
-	int gender;					 //性别
 
 	//操作指针，读取函数
 	while (fgets(strBuf, 60, pFile))
@@ -473,7 +473,7 @@ void Read_STU_From_File()
 
 		//字符串切割
 		result = strtok(strBuf, delims);
-		college = atoi(result);
+		stu_college = atoi(result);
 
 		while (NULL != result)
 		{
@@ -483,21 +483,20 @@ void Read_STU_From_File()
 
 			result = strtok(NULL, delims);
 			if (0 == nCount)
-				strcpy(ID,result);
+				strcpy(stu_id,result);
 
-			if (1 == nCount) {
-				strcpy(Name,result);
-			}
-			if (2 == nCount)
-			{
-				gender = atoi(result);
-			}			
+			if (1 == nCount) 
+				strcpy(stu_name,result);
+			
+			if (2 == nCount)		
+				stu_gender = atoi(result);
+		
 			nCount++;
 
 		}
 
 		//将文件中的信息添加到链表中
-		Add_Stu_MSG(college, ID, Name, gender);
+		Add_Stu_MSG(stu_college, stu_id, stu_name, stu_gender);
 	}
 	fclose(pFile);
 }

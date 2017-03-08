@@ -12,7 +12,7 @@ int item_nature;				//项目性质,1代表田赛,2代表径赛
 char item_time[10];			//比赛时间
 char item_location[10];		//比赛地点
 int start_comp = 1;			//比赛开关
-char ID[10];						//学号
+char ID[12];						//学号
 char Name[10];					//学生姓名
 int gender;						 //性别
 int college;						 //所属学院
@@ -96,6 +96,7 @@ void Show_Admin_Main_Page()
 				printf_s("请输入学生的学号或者姓名: \n");
 				getchar();
 				gets_s(sOrder);
+				//puts(sOrder);
 				Show_Single_STU(Find_STU_By_ID_Or_Nmae(sOrder));
 				printf_s("是否继续查询: y/n\n");
 				scanf_s("%c", &bOrder);
@@ -247,9 +248,9 @@ void Show_Admin_Main_Page()
 		}
 
 		}
-		Free_Stu_LinkedData();
-		Free_Item_LinkedData();
 	}
+	Free_Stu_LinkedData();
+	Free_Item_LinkedData();
 	Save_Item_To_File();
 	Save_Stu_To_File();
 }
