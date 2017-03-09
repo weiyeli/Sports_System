@@ -10,15 +10,15 @@ typedef struct Student
 	char Name[10];				  //学生姓名
 	int gender;					  //性别
 	int college;	                  //所属学院
-	int item_score[3][2];		 //报名的项目代码和成绩
-	int item_count = 0;		 //记录已报名项目的数目
-	Student* pnext;		     //指针
+	int item_score[3][2];		  //报名的项目代码和成绩
+	int item_count = 0;		  //记录已报名项目的数目
+	Student* pnext;		      //指针
 } STUNODE;
 
 char strBuf[60] = { '\0' };
 int stu_college;					//学院
 char stu_id[10];					//学号
-char stu_name[10];				//学生姓名
+char stu_name[10];			//学生姓名
 int stu_gender;					 //性别
 
 //声明链表的头和尾

@@ -9,6 +9,7 @@ typedef struct item
 	char item_id[10];										//项目代码
 	char item_name[10];									//项目名称
 	int item_nature;										//项目性质,1代表田赛,2代表径赛
+	//int item_gender_nature;							//按性别分组
 	char item_time[10];									//比赛时间
 	char item_location[10];								//比赛地点
 	//int item_stu[30] = { -1 };							 //参加该项目的某个学生
@@ -26,11 +27,13 @@ ITEMNODE* i_pEnd = NULL;
 void register_item(char* item_id, char* item_name, int item_nature, char* item_time, char* item_location) {
 	ITEMNODE* pNode = (ITEMNODE*)malloc(sizeof(ITEMNODE));	 //申请一个项目
 
+	//比赛项目初始化
 	strcpy(pNode->item_id, item_id);
 	strcpy(pNode->item_name, item_name);
 	pNode->item_nature = item_nature;
 	strcpy(pNode->item_time, item_time);
 	strcpy(pNode->item_location, item_location);
+	pNode->item_stu_num[8] = { -1 };
 
 	//如果为空，头和尾指针都指向首节点
 	if (NULL == i_pHead || NULL == i_pEnd)
@@ -276,10 +279,19 @@ void Show_Com_info()
 	}
 
 	system("cls");
+	setColor(10, 0);
+	printf_s("\t\t\t\t男子组\t\t\n");
 	printf_s("项目代码\t项目性质\t项目名称\t项目时间\t项目地点\t\n");
 
 	while (pTemp != NULL)
 	{
+		if (atoi(pTemp->item_id) == 101)
+		{
+			setColor(12, 0);
+			printf_s("\n\t\t\t\t女子组\t\t\n");
+			printf_s("项目代码\t项目性质\t项目名称\t项目时间\t项目地点\t\n");
+		}
+
 		printf_s("%s\t\t", pTemp->item_id);
 		if (pTemp->item_nature == 1)
 			printf_s("田赛\t\t");
@@ -366,4 +378,40 @@ void Read_Item_From_File()
 		register_item(item_id, item_name, item_nature, item_time, item_location);
 	}
 	fclose(pFile);
+}
+
+//查看项目报名情况
+void Show_Item_Sign_UP_Situation(char* item_data)
+{
+	//要报名的项目
+	ITEMNODE* i_pTemp = Find_Item_By_ID_Or_Nmae(item_data);
+	char* stubuf;
+
+	system("cls");
+	setColor(12,0);
+	printf_s("\t\t%s报名情况\n",i_pTemp->item_name);
+	printf_s(" 学院\t\t学号\t\t姓名\t\t性别\n");
+	
+	for (int i = 0; i<8 ; i++)
+	{
+		if (i_pTemp->item_stu_num[i] == -1)
+			break;
+
+		itoa(i_pTemp->item_stu_num[i], stubuf, 10);
+		STUNODE* s_pTemp = Find_STU_By_ID_Or_Nmae(stubuf);
+		if (s_pTemp->college == 1)
+			printf_s("工学院\t\t");
+		else if (s_pTemp->college == 2)
+			printf_s("医学院\t\t");
+		else if (s_pTemp->college == 3)
+			printf_s("法学院\t\t");
+		printf_s("%10s\t%4s\t\t", s_pTemp->ID, s_pTemp->Name);
+		char* sOrder_Male = "男";
+		char* sOrder_Female = "女";
+		if (s_pTemp->gender == 1)
+			printf_s("%4s\n", sOrder_Male);
+		else printf_s("%4s\n", sOrder_Female);
+
+	}
+
 }

@@ -7,7 +7,7 @@
 #include <Windows.Applicationmodel.Activation.h>
 
 //全局变量
-char item_id[3];			//比赛代码
+char item_id[10];		//比赛代码
 char stu_ID[15];			//学生学号				
 char bOrder = 'q';
 char sOrder[20];
@@ -21,7 +21,7 @@ void Show_Menu_Stu()
 	printf_s("***********************本系统操作指令如下***********************\n");
 	printf_s("1. 报名项目\n");
 	printf_s("2. 退选项目\n");
-	printf_s("3. 查看比赛安排\n");
+	printf_s("3. 查看报名情况\n");
 	printf_s("4. 查看比赛结果\n");
 	printf_s("5. 查看个人得分\n");
 	printf_s("6. 查看学院得分\n");
@@ -58,10 +58,10 @@ void Show_Stu_Main_Page()
 				getchar();
 				printf_s("请输入要报名的比赛代码: ");
 				gets_s(item_id);
-				printf_s("请输入学号");
+				printf_s("请输入学号: ");
 				gets_s(stu_ID);
 				Sign_Up_Item(stu_ID, item_id);
-				printf_s("报名成功!");
+				printf_s("报名成功!\n");
 				printf_s("是否继续报名: y/n\n");
 				scanf_s("%c",&bOrder);
 				if (bOrder != 'y'){
@@ -89,12 +89,15 @@ void Show_Stu_Main_Page()
 			break;
 		}
 
-
+		//查看比赛报名情况
 		case 3: {
 			while (flag)
 			{
-				return;
-				printf_s("是否继续修改: y/n\n");
+				getchar();
+				printf_s("请输入要查询的项目代码: ");
+				gets_s(item_id);
+				Show_Item_Sign_UP_Situation(item_id);
+				printf_s("是否继续查询: y/n\n");
 				scanf_s("%c", &bOrder);
 				if (bOrder != 'y') {
 					Return_To_Main_Menu();

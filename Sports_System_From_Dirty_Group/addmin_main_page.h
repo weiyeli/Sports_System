@@ -6,7 +6,7 @@
 
 
 //全局变量
-char id[3];							//项目代码
+char id[10];						//项目代码
 char item_name[10];			//项目名称
 int item_nature;				//项目性质,1代表田赛,2代表径赛
 char item_time[10];			//比赛时间
@@ -31,7 +31,7 @@ void Show_Admin_Menu()
 	printf_s("5. 增加比赛项目\n");
 	printf_s("6. 控制参赛\n");
 	printf_s("7. 查看学院得分\n");
-	printf_s("8. 显示项目比赛情况\n");
+	printf_s("8. 查看所有比赛项目\n");
 	printf_s("9. 显示所有学生信息\n");
 	printf_s("10. 退出系统\n");
 	printf_s("*****************************************************************\n\n");
@@ -208,7 +208,7 @@ void Show_Admin_Main_Page()
 			{
 				Show_Com_info();
 				scanf_s("%c", &bOrder);
-				if (bOrder != ' ') {
+				if (bOrder != 'y') {
 					Return_To_Admin_Main_Menu();
 					flag = 0;
 				}
