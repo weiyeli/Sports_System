@@ -3,17 +3,15 @@
 #include <stdlib.h>
 #include <string.h>
 #include "students.h"
+#include "grade_table.h"
 
 typedef struct item
 {
 	char item_id[10];										//项目代码
 	char item_name[10];									//项目名称
 	int item_nature;										//项目性质,1代表田赛,2代表径赛
-	//int item_gender_nature;							//按性别分组
 	char item_time[10];									//比赛时间
 	char item_location[10];								//比赛地点
-	//int item_stu[30] = { -1 };							 //参加该项目的某个学生
-	int item_stu_num[8];									//参加该项目的学生
 	int item_number_of_students;					//参加比赛的学生人数
 	item* pNext = NULL;									//下一个比赛项目
 }ITEMNODE;
@@ -33,7 +31,7 @@ void register_item(char* item_id, char* item_name, int item_nature, char* item_t
 	pNode->item_nature = item_nature;
 	strcpy(pNode->item_time, item_time);
 	strcpy(pNode->item_location, item_location);
-	pNode->item_stu_num[8] = { -1 };
+	pNode->item_number_of_students = 0;
 
 	//如果为空，头和尾指针都指向首节点
 	if (NULL == i_pHead || NULL == i_pEnd)
@@ -120,61 +118,78 @@ ITEMNODE* Find_Item_By_ID_Or_Nmae(char* DATA)
 	return NULL;
 }
 
-
-//项目报名
-void Sign_Up_Item(char* stu_data, char* item_data) {
-
-	//要报名的项目
-	ITEMNODE* i_pTemp = Find_Item_By_ID_Or_Nmae(item_data);
-
-	//报名的学生
-	STUNODE*  s_pTemp = Find_STU_By_ID_Or_Nmae(stu_data);
-
-	//检验参数的合法性
-	if (NULL == stu_data || NULL == item_data)
+//报名项目
+void Sign_Up_Item(char* stu_data, char* item_data)
+{
+	//判断能否报名
+	if (Find_Item_By_ID_Or_Nmae(item_data)->item_number_of_students >= 8)
 	{
-		printf_s("无效的项目或者学生信息!");
+		printf_s("报名失败: 项目人数已满!");
 		return;
 	}
-
-	//学生已报名项目数目检测
-	if (s_pTemp->item_count >= 3)
+	if (Find_STU_By_ID_Or_Nmae(stu_data)->item_count >= 3)
 	{
-		printf_s("对不起，一人最多只能报名三个比赛项目!");
+		printf_s("报名失败: 每人最多只能报名三项!");
 		return;
 	}
-
-	//项目人数检测
-	if (i_pTemp->item_number_of_students >= 8)
-	{
-		printf_s("报名失败，该项目人数已满!");
-		return;
-	}
-
-	//遍历项目中的学生数组
-	for (int i=0; i<8; i++)
-	{
-		if (i_pTemp->item_stu_num[i] != -1)
-		{
-			i_pTemp->item_stu_num[i] = atoi(s_pTemp->ID);
-		}
-	}
-
-	//将该学生添加到该项目中
-	//p_strArray[i - 1] = s_pTemp;
-
-	//在学生信息中添加报名的项目
-	for (int i = 0; i < 3; i++)
-	{
-		if (s_pTemp->item_score[i][0] == -1)
-		{
-			s_pTemp->item_score[i][0] = atoi(i_pTemp->item_id);
-		}
-	}
-
-	//报名人数加一
-	i_pTemp->item_number_of_students++;
+	Add_Grade_Table(stu_data, item_data);
 }
+
+
+////项目报名
+//void Sign_Up_Item(char* stu_data, char* item_data) {
+//
+//	//要报名的项目
+//	ITEMNODE* i_pTemp = Find_Item_By_ID_Or_Nmae(item_data);
+//
+//	//报名的学生
+//	STUNODE*  s_pTemp = Find_STU_By_ID_Or_Nmae(stu_data);
+//
+//	//检验参数的合法性
+//	if (NULL == stu_data || NULL == item_data)
+//	{
+//		printf_s("无效的项目或者学生信息!");
+//		return;
+//	}
+//
+//	//学生已报名项目数目检测
+//	if (s_pTemp->item_count >= 3)
+//	{
+//		printf_s("对不起，一人最多只能报名三个比赛项目!");
+//		return;
+//	}
+//
+//	//项目人数检测
+//	if (i_pTemp->item_number_of_students >= 8)
+//	{
+//		printf_s("报名失败，该项目人数已满!");
+//		return;
+//	}
+//
+//	//遍历项目中的学生数组
+//	for (int i=0; i<8; i++)
+//	{
+//		if (i_pTemp->item_stu_num[i] != -1)
+//		{
+//			i_pTemp->item_stu_num[i] = atoi(s_pTemp->ID);
+//		}
+//	}
+//
+//	//将该学生添加到该项目中
+//	//p_strArray[i - 1] = s_pTemp;
+//
+//	//在学生信息中添加报名的项目
+//	for (int i = 0; i < 3; i++)
+//	{
+//		if (s_pTemp->item_score[i][0] == -1)
+//		{
+//			s_pTemp->item_score[i][0] = atoi(i_pTemp->item_id);
+//		}
+//	}
+//
+//	//报名人数加一
+//	i_pTemp->item_number_of_students++;
+//}
 
 
 //释放项目链表
@@ -244,16 +259,6 @@ void Save_Item_To_File()
 		itoa(pTemp->item_number_of_students, strbuf, 10);
 		strcat(strBuf, strbuf);
 		strcat(strBuf, "#");
-		//复制报名的学生信息
-		for (int i = 0; i<8; i++)
-		{
-			if (pTemp->item_stu_num[i] != -1)
-			{
-				itoa(pTemp->item_stu_num[i], strbuf,10);
-				strcat(strBuf, strbuf);
-				strcat(strBuf, "#");
-			}
-		}
 
 		//写入文件
 		fwrite(strBuf, 1, strlen(strBuf), pFile);
@@ -365,11 +370,6 @@ void Read_Item_From_File()
 				item_number_of_students = atoi(result);
 			}
 
-			if (nCount > 4 && result !=NULL)
-			{
-				item_stu_num[i] = atoi(result);
-				i++;
-			}
 			nCount++;
 
 		}

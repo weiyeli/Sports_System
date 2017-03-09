@@ -77,6 +77,7 @@ void read_account_password_property()
 {
 	SetPos(25, 5);
 	gets_s(Account);
+	get_Cur_Acc(Account);
 	SetPos(25, 6);
 	gets_s(Password);
 	SetPos(50,7);

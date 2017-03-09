@@ -10,7 +10,6 @@ typedef struct Student
 	char Name[10];				  //学生姓名
 	int gender;					  //性别
 	int college;	                  //所属学院
-	int item_score[3][2];		  //报名的项目代码和成绩
 	int item_count = 0;		  //记录已报名项目的数目
 	Student* pnext;		      //指针
 } STUNODE;
@@ -44,6 +43,7 @@ void Add_Stu_MSG(int college, char* arrStuID, char* arrStuName, int gender)
 	strcpy(pNode->Name, arrStuName);
 	pNode->gender = gender;
 	pNode->college = college;
+	pNode->item_count = 0;
 	pNode->pnext = NULL;
 
 	//接在链表尾部上

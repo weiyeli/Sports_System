@@ -4,6 +4,7 @@
 #include <string.h>
 #include "students.h"
 #include "competition_item.h"
+#include "login_operate.h"
 #include <Windows.Applicationmodel.Activation.h>
 
 //全局变量
@@ -11,8 +12,14 @@ char item_id[10];		//比赛代码
 char stu_ID[15];			//学生学号				
 char bOrder = 'q';
 char sOrder[20];
+char Account[20];
 int flag = 1;
 
+//得到当前的账号
+void get_Cur_Acc(char* account)
+{
+	strcpy(Account, account);
+}
 
 void Show_Menu_Stu()
 {
@@ -60,6 +67,13 @@ void Show_Stu_Main_Page()
 				gets_s(item_id);
 				printf_s("请输入学号: ");
 				gets_s(stu_ID);
+
+				//安全性判断
+				if (strcmp(stu_ID, Account) != 0)
+				{
+					printf_s("哥，这不是你的学号。。。\n");
+					break;
+				}
 				Sign_Up_Item(stu_ID, item_id);
 				printf_s("报名成功!\n");
 				printf_s("是否继续报名: y/n\n");

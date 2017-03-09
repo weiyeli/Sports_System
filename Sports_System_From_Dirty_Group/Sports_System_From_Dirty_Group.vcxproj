@@ -143,6 +143,7 @@
   <ItemGroup>
     <ClInclude Include="addmin_main_page.h" />
     <ClInclude Include="competition_item.h" />
+    <ClInclude Include="grade_table.h" />
     <ClInclude Include="login_page.h" />
     <ClInclude Include="public_func.h" />
     <ClInclude Include="students.h" />
