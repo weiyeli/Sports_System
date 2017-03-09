@@ -45,8 +45,6 @@ void Show_Stu_Main_Page()
 	while (flag) {
 		setColor(10, 0);
 		int iOrder = -1;
-		Read_Item_From_File();
-		Read_STU_From_File();
 		Show_Menu_Stu();
 		setColor(6, 0);
 		scanf_s("%d", &iOrder);
@@ -159,8 +157,4 @@ void Show_Stu_Main_Page()
 			
 		}
 	}
-
-	Save_Stu_To_File();
-	Free_Stu_LinkedData();
-	Free_Item_LinkedData(); 
 }

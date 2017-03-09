@@ -53,8 +53,6 @@ void Show_Admin_Main_Page()
 	while (flag) {
 		setColor(10, 0);
 		int iOrder = -1;
-		Read_Item_From_File();
-		Read_STU_From_File();
 		Show_Admin_Menu();
 		setColor(6, 0);
 		scanf_s("%d", &iOrder);
@@ -249,8 +247,4 @@ void Show_Admin_Main_Page()
 
 		}
 	}
-	Free_Stu_LinkedData();
-	Free_Item_LinkedData();
-	Save_Item_To_File();
-	Save_Stu_To_File();
 }
