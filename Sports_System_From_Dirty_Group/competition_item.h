@@ -133,6 +133,9 @@ void Sign_Up_Item(char* stu_data, char* item_data)
 		return;
 	}
 	Add_Grade_Table(stu_data, item_data);
+
+	Find_Item_By_ID_Or_Nmae(item_data)->item_number_of_students++;
+	Find_STU_By_ID_Or_Nmae(stu_data)->item_count++;
 }
 
 
@@ -319,7 +322,6 @@ void Read_Item_From_File()
 		printf_s("文件打开失败\n");
 		return;
 	}
-
 	char strBuf[100] = { '\0' };
 	char item_id[10];										//项目代码
 	char item_name[10];									//项目名称
@@ -389,29 +391,5 @@ void Show_Item_Sign_UP_Situation(char* item_data)
 
 	system("cls");
 	setColor(12,0);
-	printf_s("\t\t%s报名情况\n",i_pTemp->item_name);
-	printf_s(" 学院\t\t学号\t\t姓名\t\t性别\n");
 	
-	for (int i = 0; i<8 ; i++)
-	{
-		if (i_pTemp->item_stu_num[i] == -1)
-			break;
-
-		itoa(i_pTemp->item_stu_num[i], stubuf, 10);
-		STUNODE* s_pTemp = Find_STU_By_ID_Or_Nmae(stubuf);
-		if (s_pTemp->college == 1)
-			printf_s("工学院\t\t");
-		else if (s_pTemp->college == 2)
-			printf_s("医学院\t\t");
-		else if (s_pTemp->college == 3)
-			printf_s("法学院\t\t");
-		printf_s("%10s\t%4s\t\t", s_pTemp->ID, s_pTemp->Name);
-		char* sOrder_Male = "男";
-		char* sOrder_Female = "女";
-		if (s_pTemp->gender == 1)
-			printf_s("%4s\n", sOrder_Male);
-		else printf_s("%4s\n", sOrder_Female);
-
-	}
-
 }

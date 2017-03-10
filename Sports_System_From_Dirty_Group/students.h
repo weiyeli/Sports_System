@@ -500,3 +500,4 @@ void Read_STU_From_File()
 	}
 	fclose(pFile);
 }
+
