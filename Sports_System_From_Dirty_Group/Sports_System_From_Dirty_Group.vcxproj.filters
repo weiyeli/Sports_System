@@ -45,13 +45,16 @@
     <ClInclude Include="addmin_main_page.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="public_func.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="competition_item.h">
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="grade_table.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Show_Item_Sign_Up_Situation.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="college.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -17,7 +17,6 @@ char Name[10];					//学生姓名
 int gender;						 //性别
 int college;						 //所属学院
 
-
 void Show_Admin_Menu()
 {
 	system("cls");

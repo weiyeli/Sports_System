@@ -142,10 +142,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="addmin_main_page.h" />
+    <ClInclude Include="college.h" />
     <ClInclude Include="competition_item.h" />
     <ClInclude Include="grade_table.h" />
     <ClInclude Include="login_page.h" />
-    <ClInclude Include="public_func.h" />
     <ClInclude Include="students.h" />
     <ClInclude Include="login_operate.h" />
     <ClInclude Include="students_main_page.h" />
@@ -153,6 +153,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="teachers_main_page.h" />
+    <ClInclude Include="Show_Item_Sign_Up_Situation.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Sports_System_From_Dirty_Group.cpp" />

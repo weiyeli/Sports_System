@@ -119,7 +119,7 @@ ITEMNODE* Find_Item_By_ID_Or_Nmae(char* DATA)
 }
 
 //报名项目
-void Sign_Up_Item(char* stu_data, char* item_data)
+void Sign_Up_Item(char* item_data, char* stu_data)
 {
 	//判断能否报名
 	if (Find_Item_By_ID_Or_Nmae(item_data)->item_number_of_students >= 8)
@@ -132,10 +132,8 @@ void Sign_Up_Item(char* stu_data, char* item_data)
 		printf_s("报名失败: 每人最多只能报名三项!");
 		return;
 	}
-	Add_Grade_Table(stu_data, item_data);
-
-	Find_Item_By_ID_Or_Nmae(item_data)->item_number_of_students++;
-	Find_STU_By_ID_Or_Nmae(stu_data)->item_count++;
+	Add_Grade_Table(item_data, stu_data);
+	Find_Item_By_ID_Or_Nmae(item_data)->item_number_of_students += 1;
 }
 
 
@@ -382,14 +380,3 @@ void Read_Item_From_File()
 	fclose(pFile);
 }
 
-//查看项目报名情况
-void Show_Item_Sign_UP_Situation(char* item_data)
-{
-	//要报名的项目
-	ITEMNODE* i_pTemp = Find_Item_By_ID_Or_Nmae(item_data);
-	char* stubuf;
-
-	system("cls");
-	setColor(12,0);
-	
-}

@@ -14,13 +14,14 @@ int main()
 {
 	Read_Item_From_File();
 	Read_STU_From_File();
+	Read_Grade_Table_From_File();
 	display();
 	Login();
-
+	Save_Grade_Table_To_File();
+	Save_Item_To_File();
+	Save_Stu_To_File();
 	Free_Stu_LinkedData();
 	Free_Item_LinkedData();
 	Free_Grade_LinkedData();
-	Save_Item_To_File();
-	Save_Stu_To_File();
 }
 

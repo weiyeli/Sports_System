@@ -5,6 +5,9 @@
 #include "students.h"
 #include "competition_item.h"
 #include "login_operate.h"
+#include "college.h"
+#include "Show_Item_Sign_Up_Situation.h"
+#include "grade_table.h"
 #include <Windows.Applicationmodel.Activation.h>
 
 //全局变量
@@ -74,8 +77,15 @@ void Show_Stu_Main_Page()
 				//	printf_s("哥，这不是你的学号。。。\n");
 				//	break;
 				//}
-				Sign_Up_Item(stu_ID, item_id);
-				printf_s("报名成功!\n");
+
+				char a = 'q';
+				printf_s("\n确定要报名%s吗? y/n\n", Find_Item_By_ID_Or_Nmae(item_id)->item_name);
+				scanf_s("%c", &a);
+				if (a == 'y') {
+					Sign_Up_Item(item_id, stu_ID);
+					printf_s("报名成功!\n");
+				}
+				getchar();
 				printf_s("是否继续报名: y/n\n");
 				scanf_s("%c",&bOrder);
 				if (bOrder != 'y'){
@@ -91,8 +101,21 @@ void Show_Stu_Main_Page()
 		{
 			while (flag)
 			{
-				return;
-				printf_s("是否继续查询: y/n\n");
+				printf_s("请输入要退选的项目代码: ");
+				getchar();
+				gets_s(item_id);
+				printf_s("请输入你的学号: ");
+				gets_s(stu_ID);
+				char a = 'q';
+				printf_s("\n确定要退选吗? y/n\n");
+				scanf_s("%c", &a);
+				if (a == 'y') {
+					DeleteStuData(Find_Grade_Table(item_id, stu_ID));
+					printf_s("退选成功!\n");
+
+				}
+				getchar();
+				printf_s("是否继续操作: y/n\n");
 				scanf_s("%c", &bOrder);
 				if (bOrder != 'y') {
 					Return_To_Main_Menu();
@@ -110,7 +133,7 @@ void Show_Stu_Main_Page()
 				getchar();
 				printf_s("请输入要查询的项目代码: ");
 				gets_s(item_id);
-				Show_Item_Sign_UP_Situation(item_id);
+				Find_Item_From_Grade_Table(item_id);
 				printf_s("是否继续查询: y/n\n");
 				scanf_s("%c", &bOrder);
 				if (bOrder != 'y') {
@@ -141,7 +164,7 @@ void Show_Stu_Main_Page()
 		case 6: {
 			while (flag)
 			{
-				return;
+				
 				printf_s("是否继续删除: y/n\n");
 				scanf_s("%c", &bOrder);
 				if (bOrder != 'y') {

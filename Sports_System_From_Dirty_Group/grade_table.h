@@ -10,7 +10,7 @@ typedef struct grade_table
 	char stu_id[15];														//学生学号
 	char item_id[10];													//项目编号
 	int  complete;														//完成情况
-	char  grade[10];															//学生成绩
+	char  grade[10];													//学生成绩
 	int rank;																//学生名次
 	grade_table* pNext = NULL;									//下一张成绩单
 }GRADENODE;
@@ -49,7 +49,7 @@ void Add_Grade_Table(char* item_id, char* stu_id) {
 	while (atoi(pNode->item_id) <= atoi(item_id))
 	{
 		//如果两个学号和项目代码相等，直接退出
-		if (strcmp(pTemp->item_id,pNode->item_id)==0 && strcmp(pTemp->stu_id, pNode->stu_id)==0)
+		if (strcmp(pTemp->item_id, pNode->item_id) == 0 && strcmp(pTemp->stu_id, pNode->stu_id) == 0)
 		{
 			printf_s("error: 已存在该成绩单!\n");
 			return;
@@ -83,6 +83,7 @@ void Add_Grade_Table(char* item_id, char* stu_id) {
 		tTemp->pNext = pNode;
 		pNode->pNext = pTemp;
 	}
+	Find_STU_By_ID_Or_Nmae(stu_id)->item_count += 1;
 }
 
 //初始化成绩单
@@ -286,54 +287,123 @@ void Read_Grade_Table_From_File()
 		}
 
 		//将文件中的信息添加到链表中
-		Initialize_Grade_Table(stu_id, item_id, complete, grade, rank);
+		Initialize_Grade_Table(item_id, stu_id, complete, grade, rank);
 	}
 	fclose(pFile);
 }
 
 
-//从成绩表中查询项目报名情况
-void Find_Item_From_Grade_Table(char* DATA)
+//查找指定的成绩单
+GRADENODE* Find_Grade_Table(char* item_id, char* stu_id)
 {
 	//检测参数的合法性
-	if (NULL == DATA)
+	if (NULL == item_id || NULL == stu_id)
 	{
 		//printf_s("输入错误!\n");
-		return;
+		return NULL;
 	}
 
 	//判断链表是否为空
 	if (NULL == t_pHead || NULL == t_pEnd)
 	{
 		//printf_s("无此节点!\n");
-		return;
+		return NULL;
 	}
 
-	system("cls");
-	setColor(12, 0);
-	printf_s("\t报名项目: %s\t报名人数: \t\n\n",Find_Item_By_ID_Or_Nmae(DATA)->item_name, Find_Item_By_ID_Or_Nmae(DATA)->item_number_of_students);
-	printf_s("编号\t\t学院\t\t学号\t\t姓名\n");
 	//遍历链表
 	GRADENODE* pTemp = t_pHead;
 	while (pTemp)
 	{
-		int i = 0;
-		//找到了该项目的成绩单
-		if (strcmp(DATA, pTemp->item_id) == 0)
-		{
-			printf_s("%d\t\t",i);
-			if (Find_STU_By_ID_Or_Nmae(pTemp->stu_id)->college == 1)
-				printf_s("工学院\t\t");
-			else if (Find_STU_By_ID_Or_Nmae(pTemp->stu_id)->college == 2)
-				printf_s("医学院\t\t");
-			else if (Find_STU_By_ID_Or_Nmae(pTemp->stu_id)->college == 3)
-				printf_s("法学院\t\t");
 
-			printf_s("%10s\t\t%4s\t\t\n", Find_STU_By_ID_Or_Nmae(pTemp->stu_id)->ID, Find_STU_By_ID_Or_Nmae(pTemp->stu_id)->Name);
-		}
+		if ((0 == strcmp(pTemp->item_id, item_id)) || (0 == strcmp(pTemp->stu_id, stu_id)))
+			return pTemp;
 		pTemp = pTemp->pNext;
 	}
-	
-	printf_s("成绩单不存在!\n");
+
+	//printf_s("查无此节点");
+	return NULL;
 }
+
+//删除指定的成绩表
+void DeleteStuData(GRADENODE* pNode) {
+	if (NULL == pNode)
+	{
+		printf_s("查无此人!\n");
+		return;
+	}
+
+	//只有一个节点
+	if (t_pHead == t_pEnd)
+	{
+		//printf_s("我是1\n");
+		free(t_pHead);
+		t_pHead = NULL;
+		t_pEnd = NULL;
+	}
+	// 只有两个节点
+	else if (t_pHead->pNext == t_pEnd) {
+		//printf_s("我是2\n");
+		//如果传进来的是头
+		if (t_pHead == pNode) {
+			free(t_pHead);
+			t_pHead = t_pEnd;
+		}
+		//如果传进来的是尾
+		if (t_pEnd == pNode) {
+			free(t_pEnd);
+			t_pEnd = t_pHead;
+			t_pHead->pNext = NULL; //小心野指针
+		}
+	}
+
+	//节点数大于等于三
+	else {
+		//printf_s("我是3\n");
+		GRADENODE* pTemp = t_pHead;
+
+		//判断头
+		if (t_pHead == pNode)
+		{
+			//记住头
+			//printf_s("%s我是测试1\n", t_pHead->ID);
+			pTemp = t_pHead;
+			t_pHead = t_pHead->pNext;
+			//printf_s("%s我是测试2\n", t_pHead->ID);
+			free(pTemp);
+			pTemp = NULL;
+			return;
+		}
+
+		//printf_s("%s我是测试3\n", pNode->ID);
+		while (pTemp)
+		{
+			if (pTemp->pNext == pNode)
+			{
+
+				//判断尾
+				if (t_pEnd == pNode)
+				{
+					//删除
+					free(pNode);
+					pNode = NULL;
+					t_pEnd = pTemp;
+					pTemp->pNext = NULL;
+					return;
+				}
+
+				pTemp->pNext = pNode->pNext;
+				free(pNode);
+				return;
+			}
+			pTemp = pTemp->pNext;
+		}
+	}
+}
+
+//录入学生信息
+void Record_Stu_Score(char* item_id)
+{
+
+}
+
 
